@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cvs on Kenichi Shibata</title>
+    <link>https://kenichi.shibata.co.uk/cv/</link>
+    <description>Recent content in Cvs on Kenichi Shibata</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 02 Feb 2021 14:30:00 +0100</lastBuildDate><atom:link href="https://kenichi.shibata.co.uk/cv/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kenichi Shibata</title>
+      <link>https://kenichi.shibata.co.uk/cv/jan21/</link>
+      <pubDate>Tue, 02 Feb 2021 14:30:00 +0100</pubDate>
+      
+      <guid>https://kenichi.shibata.co.uk/cv/jan21/</guid>
+      <description>ComparetheMarket Cloud Solution Architect (December 2019 - Present)   Architected key areas of the cloud infrastructure
+  Redesigned exisiting cloud systems following industry standards
+ Monitoring for Metrics and Logging Deployment Pipeline Kubernetes Cluster Operating Model      Technical Leadership with multiple teams consuming cloud services
+  Consultancy for cloud technology and solution using risk based and reward based approach
+  Built a cloud infrastructure roadmap and vision for the new generation tech strategy</description>
+    </item>
+    
+  </channel>
+</rss>

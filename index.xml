@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kenichi Shibata</title>
+    <link>https://kenichi.shibata.co.uk/</link>
+    <description>Recent content on Kenichi Shibata</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 02 Feb 2021 14:30:00 +0100</lastBuildDate><atom:link href="https://kenichi.shibata.co.uk/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kenichi Shibata</title>
+      <link>https://kenichi.shibata.co.uk/cv/jan21/</link>
+      <pubDate>Tue, 02 Feb 2021 14:30:00 +0100</pubDate>
+      
+      <guid>https://kenichi.shibata.co.uk/cv/jan21/</guid>
+      <description>ComparetheMarket Cloud Solution Architect (December 2019 - Present)   Architected key areas of the cloud infrastructure
+  Redesigned exisiting cloud systems following industry standards
+ Monitoring for Metrics and Logging Deployment Pipeline Kubernetes Cluster Operating Model      Technical Leadership with multiple teams consuming cloud services
+  Consultancy for cloud technology and solution using risk based and reward based approach
+  Built a cloud infrastructure roadmap and vision for the new generation tech strategy</description>
+    </item>
+    
+    <item>
+      <title>Setting up Development Environment for Cluster API Provider AWS</title>
+      <link>https://kenichi.shibata.co.uk/posts/setting-up-development-environment-for-cluster-api-provider-aws/</link>
+      <pubDate>Sun, 24 Jan 2021 15:36:16 +0100</pubDate>
+      
+      <guid>https://kenichi.shibata.co.uk/posts/setting-up-development-environment-for-cluster-api-provider-aws/</guid>
+      <description>ClusterAPI ClusterAPI Architecture is discussed here, we will not deep dive into it, however it is useful to know that Cluster-API-provider-aws is a subset of the ClusterAPI project.
+In this post we will be deep diving into how to setup and contribute into the ClusterAPI provider AWS.
+Setup Development Environment for EKS Control Plane login to github and fork both
+ https://github.com/kubernetes-sigs/cluster-api https://github.com/kubernetes-sigs/cluster-api-provider-aws  Install Prerequisites  Golang Version 1.13 or higher direnv envsubst kubectl Working Development Environment  install direnv</description>
+    </item>
+    
+  </channel>
+</rss>

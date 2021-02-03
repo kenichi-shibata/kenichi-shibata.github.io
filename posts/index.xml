@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Kenichi Shibata</title>
+    <link>https://kenichi.shibata.co.uk/posts/</link>
+    <description>Recent content in Posts on Kenichi Shibata</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Jan 2021 15:36:16 +0100</lastBuildDate><atom:link href="https://kenichi.shibata.co.uk/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Setting up Development Environment for Cluster API Provider AWS</title>
+      <link>https://kenichi.shibata.co.uk/posts/setting-up-development-environment-for-cluster-api-provider-aws/</link>
+      <pubDate>Sun, 24 Jan 2021 15:36:16 +0100</pubDate>
+      
+      <guid>https://kenichi.shibata.co.uk/posts/setting-up-development-environment-for-cluster-api-provider-aws/</guid>
+      <description>ClusterAPI ClusterAPI Architecture is discussed here, we will not deep dive into it, however it is useful to know that Cluster-API-provider-aws is a subset of the ClusterAPI project.
+In this post we will be deep diving into how to setup and contribute into the ClusterAPI provider AWS.
+Setup Development Environment for EKS Control Plane login to github and fork both
+ https://github.com/kubernetes-sigs/cluster-api https://github.com/kubernetes-sigs/cluster-api-provider-aws  Install Prerequisites  Golang Version 1.13 or higher direnv envsubst kubectl Working Development Environment  install direnv</description>
+    </item>
+    
+  </channel>
+</rss>
