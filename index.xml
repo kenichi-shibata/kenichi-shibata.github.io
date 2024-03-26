@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kenichi Shibata</title>
+    <link>https://kenichi.shibata.co.uk/</link>
+    <description>Recent content on Kenichi Shibata</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 21 Dec 2021 12:54:16 +0100</lastBuildDate>
+    <atom:link href="https://kenichi.shibata.co.uk/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Subscribing to RSS Feeds using Feedly</title>
+      <link>https://kenichi.shibata.co.uk/posts/subscribing-to-rss-feeds-using-feedly/</link>
+      <pubDate>Tue, 21 Dec 2021 12:54:16 +0100</pubDate>
+      <guid>https://kenichi.shibata.co.uk/posts/subscribing-to-rss-feeds-using-feedly/</guid>
+      <description>Feedly Feedly uses RSS feeds natively from the website its subscribing to or using feedburner</description>
+    </item>
+    <item>
+      <title>Kenichi Shibata</title>
+      <link>https://kenichi.shibata.co.uk/cv/jan21/</link>
+      <pubDate>Tue, 02 Feb 2021 14:30:00 +0100</pubDate>
+      <guid>https://kenichi.shibata.co.uk/cv/jan21/</guid>
+      <description>Kenichi Shibata Location: Redhill, England, UK&#xA;Email: kenichi@shibata.co.uk&#xA;Website: kenichi.shibata.co.uk&#xA;GitHub: github.com/kenichi-shibata&#xA;LinkedIn: linkedin.com/in/kenichishibata31&#xA;Professional Summary Innovative and results-driven Lead DevSecOps with over a decade of experience in architecting, implementing, and optimizing cloud infrastructure and security solutions. Proven track record in leading teams to enhance security measures, reduce costs, and improve system efficiency within high-profile organizations. Adept at driving the integration of cutting-edge security tools and practices into software development life cycles.</description>
+    </item>
+    <item>
+      <title>Setting up Development Environment for Cluster API Provider AWS</title>
+      <link>https://kenichi.shibata.co.uk/posts/setting-up-development-environment-for-cluster-api-provider-aws/</link>
+      <pubDate>Sun, 24 Jan 2021 15:36:16 +0100</pubDate>
+      <guid>https://kenichi.shibata.co.uk/posts/setting-up-development-environment-for-cluster-api-provider-aws/</guid>
+      <description>ClusterAPI ClusterAPI Architecture is discussed here, we will not deep dive into it, however it is useful to know that Cluster-API-provider-aws is a subset of the ClusterAPI project.&#xA;In this post we will be deep diving into how to setup and contribute into the ClusterAPI provider AWS.&#xA;Setup Development Environment for EKS Control Plane login to github and fork both&#xA;https://github.com/kubernetes-sigs/cluster-api https://github.com/kubernetes-sigs/cluster-api-provider-aws Install Prerequisites Golang Version 1.13 or higher direnv envsubst kubectl Working Development Environment install direnv</description>
+    </item>
+  </channel>
+</rss>
