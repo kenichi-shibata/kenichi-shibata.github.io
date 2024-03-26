@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cvs on Kenichi Shibata</title>
+    <link>https://kenichi.shibata.co.uk/cv/</link>
+    <description>Recent content in Cvs on Kenichi Shibata</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 25 Mar 2024 14:30:00 +0100</lastBuildDate>
+    <atom:link href="https://kenichi.shibata.co.uk/cv/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kenichi Shibata</title>
+      <link>https://kenichi.shibata.co.uk/cv/mar24/</link>
+      <pubDate>Mon, 25 Mar 2024 14:30:00 +0100</pubDate>
+      <guid>https://kenichi.shibata.co.uk/cv/mar24/</guid>
+      <description>Kenichi Shibata Location: Redhill, England, UK&#xA;Email: kenichi@shibata.co.uk&#xA;Website: kenichi.shibata.co.uk&#xA;GitHub: github.com/kenichi-shibata&#xA;LinkedIn: linkedin.com/in/kenichishibata31&#xA;Professional Summary An innovative DevSecOps leader with over a decade of experience architecting and optimizing cloud infrastructure and security solutions. I excel at driving integration of cutting-edge practices into software development lifecycles to enhance security, reduce costs, and boost efficiency. My expertise has been recognized through speaking engagements at major events like AWS Summit, QCon, and Cloud Expo Europe.</description>
+    </item>
+  </channel>
+</rss>
