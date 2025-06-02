@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://kenichi.shibata.co.uk/cv/</loc>
+    <lastmod>2025-04-25T14:30:00+01:00</lastmod>
+  </url><url>
+    <loc>https://kenichi.shibata.co.uk/</loc>
+    <lastmod>2025-04-25T14:30:00+01:00</lastmod>
+  </url><url>
+    <loc>https://kenichi.shibata.co.uk/cv/apr25-full/</loc>
+    <lastmod>2025-04-25T14:30:00+01:00</lastmod>
+  </url><url>
+    <loc>https://kenichi.shibata.co.uk/posts/</loc>
+    <lastmod>2021-12-21T12:54:16+01:00</lastmod>
+  </url><url>
+    <loc>https://kenichi.shibata.co.uk/posts/subscribing-to-rss-feeds-using-feedly/</loc>
+    <lastmod>2021-12-21T12:54:16+01:00</lastmod>
+  </url><url>
+    <loc>https://kenichi.shibata.co.uk/posts/setting-up-development-environment-for-cluster-api-provider-aws/</loc>
+    <lastmod>2021-01-24T15:36:16+01:00</lastmod>
+  </url><url>
+    <loc>https://kenichi.shibata.co.uk/categories/</loc>
+  </url><url>
+    <loc>https://kenichi.shibata.co.uk/tags/</loc>
+  </url>
+</urlset>

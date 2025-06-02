@@ -1,0 +1,73 @@
+/*https://md-to-pdf.fly.dev/ */
+/* Set overall font and color */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #333;
+    font-size: 0.9em;
+}
+
+/* Headings */
+h1, h2 {
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 0.3em;
+}
+
+h1 {
+    font-size: 1.6em;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.1em;
+}
+
+h2 {
+    font-size: 1.2em;
+    color: #555;
+}
+
+/* Tables */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    text-align: left;
+    padding: 0.6em;
+    font-size: 0.9em;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Other elements */
+ul {
+    margin-left: 1.2em;
+    margin-bottom: 0.8em;
+}
+
+li {
+    margin-bottom: 0.2em;
+    font-size: 0.9em;
+    line-height: 1.3;
+}
+
+p {
+    line-height: 1.4;
+    margin-bottom: 0.8em;
+}
+
+/* Spacing */
+section {
+    margin-bottom: 1.5em;
+}

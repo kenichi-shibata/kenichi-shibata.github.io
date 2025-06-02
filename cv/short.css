@@ -1,0 +1,67 @@
+/* Set overall font and color */
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #333;
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+/* Headings */
+h1, h2 {
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 1.6em;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.1em;
+}
+
+h2 {
+  font-size: 1.2em;
+  color: #555;
+}
+
+/* Lists */
+ul {
+  margin-left: 1.2em;
+  margin-bottom: 0.8em;
+}
+
+li {
+  margin-bottom: 0.4em;
+  font-size: 0.9em;
+  line-height: 1.3;
+}
+
+/* Links */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Spacing */
+section {
+  margin-bottom: 1.5em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  body {
+    font-size: 0.8em;
+  }
+
+  h1 {
+    font-size: 1.4em;
+  }
+
+  h2 {
+    font-size: 1.1em;
+  }
+}

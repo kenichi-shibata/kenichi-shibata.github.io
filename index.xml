@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kenichi Shibata</title>
+    <link>https://kenichi.shibata.co.uk/</link>
+    <description>Recent content on Kenichi Shibata</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 25 Apr 2025 14:30:00 +0100</lastBuildDate>
+    <atom:link href="https://kenichi.shibata.co.uk/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kenichi Shibata CV</title>
+      <link>https://kenichi.shibata.co.uk/cv/apr25-full/</link>
+      <pubDate>Fri, 25 Apr 2025 14:30:00 +0100</pubDate>
+      <guid>https://kenichi.shibata.co.uk/cv/apr25-full/</guid>
+      <description>&lt;hr&gt;&#xA;&lt;h1 id=&#34;kenichi-shibata&#34;&gt;Kenichi Shibata&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Location:&lt;/strong&gt; Horley, England, UK&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Email:&lt;/strong&gt; &lt;a href=&#34;mailto:kenichi@shibata.co.uk&#34;&gt;kenichi@shibata.co.uk&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Website:&lt;/strong&gt; &lt;a href=&#34;http://kenichi.shibata.co.uk&#34;&gt;kenichi.shibata.co.uk&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;GitHub:&lt;/strong&gt; &lt;a href=&#34;https://github.com/kenichi-shibata&#34;&gt;github.com/kenichi-shibata&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;LinkedIn:&lt;/strong&gt; &lt;a href=&#34;https://www.linkedin.com/in/kenichishibata31&#34;&gt;linkedin.com/in/kenichishibata31&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;professional-summary&#34;&gt;Professional Summary&lt;/h2&gt;&#xA;&lt;p&gt;An innovative DevSecOps leader with over a decade of experience architecting and optimizing cloud infrastructure and security solutions. I excel at driving integration of cutting-edge practices into software development lifecycles to enhance security, reduce costs, and boost efficiency. My expertise has been recognized through speaking engagements at major events like AWS Summit, QCon, and Cloud Expo Europe. As the author of &amp;ldquo;Cloud Native Monitoring&amp;rdquo; and &amp;ldquo;Cloud Native Observability&amp;rdquo; (O&amp;rsquo;Reilly Media), and a regular contributor to technical publications, I&amp;rsquo;m passionate about sharing knowledge, building teams, pragmatic architectures and mentorship. I&amp;rsquo;m seeking an opportunity to leverage my extensive cloud security, DevOps, team building/mentorship experience and authorship background to drive success for a forward-thinking organization. My technical skills include Kubernetes (8+ years in production), Linux, AWS, Python, and Golang.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Subscribing to RSS Feeds using Feedly</title>
+      <link>https://kenichi.shibata.co.uk/posts/subscribing-to-rss-feeds-using-feedly/</link>
+      <pubDate>Tue, 21 Dec 2021 12:54:16 +0100</pubDate>
+      <guid>https://kenichi.shibata.co.uk/posts/subscribing-to-rss-feeds-using-feedly/</guid>
+      <description>&lt;h1 id=&#34;feedly&#34;&gt;Feedly&lt;/h1&gt;&#xA;&lt;p&gt;Feedly uses RSS feeds natively from the website its subscribing to or using&#xA;feedburner&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Setting up Development Environment for Cluster API Provider AWS</title>
+      <link>https://kenichi.shibata.co.uk/posts/setting-up-development-environment-for-cluster-api-provider-aws/</link>
+      <pubDate>Sun, 24 Jan 2021 15:36:16 +0100</pubDate>
+      <guid>https://kenichi.shibata.co.uk/posts/setting-up-development-environment-for-cluster-api-provider-aws/</guid>
+      <description>&lt;h1 id=&#34;clusterapi&#34;&gt;ClusterAPI&lt;/h1&gt;&#xA;&lt;p&gt;ClusterAPI Architecture is discussed &lt;a href=&#34;https://cluster-api.sigs.k8s.io/user/concepts.html&#34;&gt;here&lt;/a&gt;, we will not deep dive into it, however it is useful to know that Cluster-API-provider-aws is a subset of the ClusterAPI project.&lt;/p&gt;&#xA;&lt;p&gt;In this post we will be deep diving into how to setup and contribute into the ClusterAPI provider AWS.&lt;/p&gt;&#xA;&lt;h2 id=&#34;setup-development-environment-for-eks-control-plane&#34;&gt;Setup Development Environment for EKS Control Plane&lt;/h2&gt;&#xA;&lt;p&gt;login to github and fork both&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://github.com/kubernetes-sigs/cluster-api&#34;&gt;https://github.com/kubernetes-sigs/cluster-api&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://github.com/kubernetes-sigs/cluster-api-provider-aws&#34;&gt;https://github.com/kubernetes-sigs/cluster-api-provider-aws&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;install-prerequisites&#34;&gt;Install Prerequisites&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Golang Version 1.13 or higher&lt;/li&gt;&#xA;&lt;li&gt;direnv&lt;/li&gt;&#xA;&lt;li&gt;envsubst&lt;/li&gt;&#xA;&lt;li&gt;kubectl&lt;/li&gt;&#xA;&lt;li&gt;Working Development Environment&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;install &lt;code&gt;direnv&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

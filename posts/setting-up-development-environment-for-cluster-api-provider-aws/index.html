@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title> Setting up Development Environment for Cluster API Provider AWS &middot; Kenichi Shibata </title>
+
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.145.0">
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://kenichi.shibata.co.uk/css/nix.css">
+
+
+
+
+
+<link href="https://fonts.googleapis.com/css?family=Inconsolata%7COpen+Sans%7CConcert+One" rel="stylesheet">
+
+
+
+
+
+
+    </head>
+
+    <body>
+        <header>
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse font-header">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+      <a class="navbar-brand" id="green-terminal" href='https://kenichi.shibata.co.uk/'>
+        kenichi@shibata.co.uk ~ $
+      </a>
+		</div>
+
+		
+		<div class="collapse navbar-collapse" id="navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a href='https://kenichi.shibata.co.uk/'>/home/kenichi</a>
+        </li>
+        
+				
+				
+				<li class="dropdown">
+                    
+            		<a href="https://kenichi.shibata.co.uk/cv">~/cv</a>
+            		
+        		</li>
+        		
+				
+				<li class="dropdown">
+                    
+            		<a href="https://kenichi.shibata.co.uk/posts">~/posts</a>
+            		
+        		</li>
+        		
+
+			</ul>
+		</div>
+	</div>
+</nav>
+</header>
+
+        <div class="flex-wrapper">
+            <div class="container wrapper">
+                <h1><a href="https://kenichi.shibata.co.uk/posts/setting-up-development-environment-for-cluster-api-provider-aws/">Setting up Development Environment for Cluster API Provider AWS</a></h1>
+                <span class="post-date">2021-01-24 </span>
+                <div class="post-content">
+                    <h1 id="clusterapi">ClusterAPI</h1>
+<p>ClusterAPI Architecture is discussed <a href="https://cluster-api.sigs.k8s.io/user/concepts.html">here</a>, we will not deep dive into it, however it is useful to know that Cluster-API-provider-aws is a subset of the ClusterAPI project.</p>
+<p>In this post we will be deep diving into how to setup and contribute into the ClusterAPI provider AWS.</p>
+<h2 id="setup-development-environment-for-eks-control-plane">Setup Development Environment for EKS Control Plane</h2>
+<p>login to github and fork both</p>
+<ul>
+<li><a href="https://github.com/kubernetes-sigs/cluster-api">https://github.com/kubernetes-sigs/cluster-api</a></li>
+<li><a href="https://github.com/kubernetes-sigs/cluster-api-provider-aws">https://github.com/kubernetes-sigs/cluster-api-provider-aws</a></li>
+</ul>
+<h3 id="install-prerequisites">Install Prerequisites</h3>
+<ul>
+<li>Golang Version 1.13 or higher</li>
+<li>direnv</li>
+<li>envsubst</li>
+<li>kubectl</li>
+<li>Working Development Environment</li>
+</ul>
+<p>install <code>direnv</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install direnv
+</span></span></code></pre></div><p>install <code>envsubst</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -L https://github.com/a8m/envsubst/releases/download/v1.2.0/envsubst-<span style="color:#e6db74">`</span>uname -s<span style="color:#e6db74">`</span>-<span style="color:#e6db74">`</span>uname -m<span style="color:#e6db74">`</span> -o envsubst
+</span></span><span style="display:flex;"><span>chmod +x envsubst
+</span></span><span style="display:flex;"><span>sudo mv envsubst $HOME/go/bin/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># or use go get</span>
+</span></span><span style="display:flex;"><span>export GOPATH<span style="color:#f92672">=</span>~go
+</span></span><span style="display:flex;"><span>go get -v github.com/a8m/envsubst/cmd/envsubst
+</span></span></code></pre></div><h3 id="setup-repos-and-gopath">Setup Repos and GOPATH</h3>
+<p>setup this in <code>~/go/src/sigs.k8s.io</code> and <code>export GOPATH=~go</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ export GOPATH<span style="color:#f92672">=</span>~go
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ mkdir ~/go/src/sigs.k8s.io/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ cd ~/go/src/sigs.k8s.io/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ git clone git@github.com:kenichi-shibata/cluster-api.git
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ git clone git@github.com:kenichi-shibata/cluster-api-provider-aws.git
+</span></span></code></pre></div><p>and add upstream for both repos</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd cluster-api 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ git remote add upstream git@github.com:kubernetes-sigs/cluster-api.git
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ git fetch upstream
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ cd ..
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ cd cluster-api-provider-aws
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ git remote add upstream git@github.com:kubernetes-sigs/cluster-api.git
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ git fetch upstream
+</span></span></code></pre></div><h3 id="build-clusterawsadm-and-setup-your-aws-environment">Build clusterawsadm and setup your AWS Environment</h3>
+<p>build the <code>clusterawsadm</code> in <code>cluster-api-provider-aws</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ make clusterawsadm
+</span></span></code></pre></div><p>create bootstrap file and bootstrap IAM roles and policies using <code>clusterawsadm</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cat config-bootstrap.yaml
+</span></span><span style="display:flex;"><span>apiVersion: bootstrap.aws.infrastructure.cluster.x-k8s.io/v1alpha1
+</span></span><span style="display:flex;"><span>kind: AWSIAMConfiguration
+</span></span><span style="display:flex;"><span>spec:
+</span></span><span style="display:flex;"><span>  bootstrapUser:
+</span></span><span style="display:flex;"><span>    enable: true
+</span></span><span style="display:flex;"><span>  eks:
+</span></span><span style="display:flex;"><span>    enable: true
+</span></span><span style="display:flex;"><span>    iamRoleCreation: false <span style="color:#75715e"># Set to true if you plan to use the EKSEnableIAM feature flag to enable automatic creation of IAM roles</span>
+</span></span><span style="display:flex;"><span>    defaultControlPlaneRole:
+</span></span><span style="display:flex;"><span>      disable: false <span style="color:#75715e"># Set to false to enable creation of the default control plane role</span>
+</span></span><span style="display:flex;"><span>    managedMachinePool:
+</span></span><span style="display:flex;"><span>      disable: false <span style="color:#75715e"># Set to false to enable creation of the default node role for managed machine pools</span>
+</span></span></code></pre></div><p>create IAM Resources that will be needed for bootstrapping EKS</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ./bin/clusterawsadm bootstrap iam create-cloudformation-stack --config<span style="color:#f92672">=</span>config-bootstrap.yaml
+</span></span><span style="display:flex;"><span>Attempting to create AWS CloudFormation stack cluster-api-provider-aws-sigs-k8s-io
+</span></span></code></pre></div><p>this will create cloudformation stack for those IAM resources</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Following resources are in the stack:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Resource                  |Type                                                                                |Status
+</span></span><span style="display:flex;"><span>AWS::IAM::Group           |cluster-api-provider-aws-s-AWSIAMGroupBootstrapper-ME9XZVCO2491                     |CREATE_COMPLETE
+</span></span><span style="display:flex;"><span>AWS::IAM::InstanceProfile |control-plane.cluster-api-provider-aws.sigs.k8s.io                                  |CREATE_COMPLETE
+</span></span><span style="display:flex;"><span>AWS::IAM::InstanceProfile |controllers.cluster-api-provider-aws.sigs.k8s.io                                    |CREATE_COMPLETE
+</span></span><span style="display:flex;"><span>AWS::IAM::InstanceProfile |nodes.cluster-api-provider-aws.sigs.k8s.io                                          |CREATE_COMPLETE
+</span></span><span style="display:flex;"><span>AWS::IAM::ManagedPolicy   |arn:aws:iam::xxx:policy/control-plane.cluster-api-provider-aws.sigs.k8s.io |CREATE_COMPLETE
+</span></span><span style="display:flex;"><span>AWS::IAM::ManagedPolicy   |arn:aws:iam::xxx:policy/nodes.cluster-api-provider-aws.sigs.k8s.io         |CREATE_COMPLETE
+</span></span><span style="display:flex;"><span>AWS::IAM::ManagedPolicy   |arn:aws:iam::xxx:policy/controllers.cluster-api-provider-aws.sigs.k8s.io   |CREATE_COMPLETE
+</span></span><span style="display:flex;"><span>AWS::IAM::Role            |control-plane.cluster-api-provider-aws.sigs.k8s.io                                  |CREATE_COMPLETE
+</span></span><span style="display:flex;"><span>AWS::IAM::Role            |controllers.cluster-api-provider-aws.sigs.k8s.io                                    |CREATE_COMPLETE
+</span></span><span style="display:flex;"><span>AWS::IAM::Role            |eks-controlplane.cluster-api-provider-aws.sigs.k8s.io                               |CREATE_COMPLETE
+</span></span><span style="display:flex;"><span>AWS::IAM::Role            |eks-nodegroup.cluster-api-provider-aws.sigs.k8s.io                                  |CREATE_COMPLETE
+</span></span><span style="display:flex;"><span>AWS::IAM::Role            |nodes.cluster-api-provider-aws.sigs.k8s.io                                          |CREATE_COMPLETE
+</span></span><span style="display:flex;"><span>AWS::IAM::User            |bootstrapper.cluster-api-provider-aws.sigs.k8s.io                                   |CREATE_COMPLETE
+</span></span></code></pre></div><p>create a security credentials in the <code>bootstrapper.cluster-api-provider-aws.sigs.k8s.io</code> IAM user and copy the <code>AWS_ACCESS_KEY_ID</code> and <code>AWS_SECRETS_ACCESS_KEY</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ brew install direnv
+</span></span><span style="display:flex;"><span>$ touch .envrc <span style="color:#75715e">#add the aws key</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>unset AWS_SESSION_TOKEN
+</span></span><span style="display:flex;"><span>unset AWS_SECURITY_TOKEN
+</span></span><span style="display:flex;"><span>export AWS_ACCESS_KEY_ID<span style="color:#f92672">=</span>AKIATEST
+</span></span><span style="display:flex;"><span>export AWS_SECRET_ACCESS_KEY<span style="color:#f92672">=</span>TESTTEST
+</span></span><span style="display:flex;"><span>export AWS_REGION<span style="color:#f92672">=</span>eu-west-1
+</span></span></code></pre></div><p>then run <code>direnv allow</code> for each change done in <code>.envrc</code></p>
+<p>create a kind cluster where we can deploy the kubernetes manifests. This kind cluster will be a temp cluster which we will use to create the EKS cluster.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ kind create cluster
+</span></span></code></pre></div><p>setup cluster-api with the same <code>.envrc</code> file and then allow direnv</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cp .envrc ../cluster-api
+</span></span><span style="display:flex;"><span>cd ../cluster-api
+</span></span><span style="display:flex;"><span>direnv allow
+</span></span></code></pre></div><p>create <code>tilt-settings.json</code> change the value of <code>AWS_B64ENCODED_CREDENTIALS</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;default_registry&#34;</span>: <span style="color:#e6db74">&#34;gcr.io/richardcase&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;provider_repos&#34;</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;../cluster-api-provider-aws&#34;</span><span style="color:#f92672">]</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;enable_providers&#34;</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;eks-bootstrap&#34;</span>, <span style="color:#e6db74">&#34;eks-controlplane&#34;</span>, <span style="color:#e6db74">&#34;kubeadm-bootstrap&#34;</span>, <span style="color:#e6db74">&#34;kubeadm-control-plane&#34;</span>, <span style="color:#e6db74">&#34;aws&#34;</span><span style="color:#f92672">]</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;kustomize_substitutions&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;AWS_B64ENCODED_CREDENTIALS&#34;</span>: <span style="color:#e6db74">&#34;W2RlZmFZSZnRg==&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;EXP_EKS&#34;</span>: <span style="color:#e6db74">&#34;true&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;EXP_EKS_IAM&#34;</span>: <span style="color:#e6db74">&#34;true&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;EXP_MACHINE_POOL&#34;</span>: <span style="color:#e6db74">&#34;true&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;extra_args&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;aws&#34;</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;--v=2&#34;</span><span style="color:#f92672">]</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;eks-bootstrap&#34;</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;--v=2&#34;</span><span style="color:#f92672">]</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;eks-controlplane&#34;</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;--v=2&#34;</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>run dev env using <code>tilt</code> let it run and press space once its running to open the web browser</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tilt up
+</span></span></code></pre></div><p>create<code>cd cluster-api-provider-aws</code>  and edit <code>.envrc</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export AWS_EKS_ROLE_ARN<span style="color:#f92672">=</span>arn:aws:iam::&lt;accountid&gt;:role/aws-service-role/eks.amazonaws.com/AWSServiceRoleForAmazonEKS
+</span></span><span style="display:flex;"><span>export AWS_SSH_KEY_NAME<span style="color:#f92672">=</span>&lt;sshkeypair&gt;
+</span></span><span style="display:flex;"><span>export KUBERNETES_VERSION<span style="color:#f92672">=</span>v1.15.2
+</span></span><span style="display:flex;"><span>export EKS_KUBERNETES_VERSION<span style="color:#f92672">=</span>v1.15
+</span></span><span style="display:flex;"><span>export CLUSTER_NAME<span style="color:#f92672">=</span>capi-&lt;test-clustename&gt;
+</span></span><span style="display:flex;"><span>export CONTROL_PLANE_MACHINE_COUNT<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>export AWS_CONTROL_PLANE_MACHINE_TYPE<span style="color:#f92672">=</span>t3.large
+</span></span><span style="display:flex;"><span>export WORKER_MACHINE_COUNT<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>export AWS_NODE_MACHINE_TYPE<span style="color:#f92672">=</span>t3.large
+</span></span></code></pre></div><p>check and pipe output of template into a file</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat templates/cluster-template-eks.yaml 
+</span></span><span style="display:flex;"><span>cat templates/cluster-template-eks.yaml | $HOME/go/bin/envsubst &gt; test-cluster.yaml
+</span></span></code></pre></div><p>apply generate <code>test-cluster.yaml</code> file in the <code>kind cluster</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectx
+</span></span><span style="display:flex;"><span>kubectx kind-kind
+</span></span><span style="display:flex;"><span>kubectl apply -f test-cluster.yaml
+</span></span></code></pre></div><p>Check the tilt logs and wait for the EKS Cluster to be created</p>
+<h2 id="retry-if-theres-an-error-when-creating-the-test-cluster">Retry if theres an error when creating the test-cluster</h2>
+<p>To retry apis and services again delete the cluster and recreate it again</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tilt up <span style="color:#f92672">(</span>ctrl-c<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>press space to see the logs
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>kubectl delete -f test-cluster.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>kind delete cluster
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>kind create cluster
+</span></span></code></pre></div><p>try again</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tilt up
+</span></span></code></pre></div><h3 id="clean-up">Clean up</h3>
+<p>To clean make sure you delete the Kubernetes Resources first before deleting the Kind Cluster</p>
+<h3 id="troubleshooting">Troubleshooting</h3>
+<ul>
+<li>Make sure you have at least three available spaces EIP and NAT Gateways to be created</li>
+<li>If your git starts throwing this error</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>flag provided but not defined: -variables
+</span></span><span style="display:flex;"><span>Usage: envsubst <span style="color:#f92672">[</span>options...<span style="color:#f92672">]</span> &lt;input&gt;
+</span></span></code></pre></div><p>you might need to reinstall the system <code>envsubst</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install gettetxt
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># or</span>
+</span></span><span style="display:flex;"><span>brew reinstall gettext
+</span></span></code></pre></div><p>Make sure you specify which <code>envsubst</code> you are using</p>
+
+                </div>
+                
+                <div class="post-comments">
+                    
+                </div>
+                
+            </div>
+            <footer class="footer text-center">
+<p>Copyright &copy; 2025 Kenichi Shibata -
+<span class="credit">
+	Powered by
+	<a target="_blank" href="https://gohugo.io">Hugo</a>
+	and
+	<a target="_blank" href="https://github.com/LordMathis/hugo-theme-nix/">Nix</a> theme.
+</span>
+</p>
+</footer>
+
+        </div>
+    </body>

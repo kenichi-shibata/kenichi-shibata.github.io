@@ -1,0 +1,67 @@
+/* Set overall font and color */
+body {
+    font-family: 'Merriweather', serif; /* Using a more elegant serif font */
+    color: #333;
+    font-size: 0.8em; /* Increased font size for better readability */
+    line-height: 1.4; /* Increased line-height for better readability */
+  }
+  
+  /* Headings */
+  h1, h2 {
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+  }
+  
+  h1 {
+    font-size: 2em; /* Increased heading size for better emphasis */
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.1em;
+  }
+  
+  h2 {
+    font-size: 1.6em; /* Increased subheading size */
+    color: #555;
+  }
+  
+  /* Lists */
+  ul {
+    margin-left: 1em; /* Reduced left margin for more compact lists */
+    margin-bottom: 0.8em;
+  }
+  
+  li {
+    margin-bottom: 0.3em; /* Reduced bottom margin for more compact lists */
+    font-size: 0.9em;
+    line-height: 1.4; /* Reduced line-height for more compact lists */
+  }
+  
+  /* Links */
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Spacing */
+  section {
+    margin-bottom: 1.5em;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    body {
+      font-size: 0.9em; /* Slightly reduced font size for smaller screens */
+    }
+  
+    h1 {
+      font-size: 1.8em; /* Reduced heading size for smaller screens */
+    }
+  
+    h2 {
+      font-size: 1.4em; /* Reduced subheading size for smaller screens */
+    }
+  }
