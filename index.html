@@ -1,155 +1,146 @@
 <!DOCTYPE html>
-<html lang="en-us">
-	<head>
-		<title> Kenichi Shibata </title>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>kenichi@shibata.co.uk — platform engineer</title>
+<meta name="description" content="Kenichi Shibata — Kubernetes platform engineer, cloud native author, speaker.">
+<link rel="stylesheet" href="nexus-ui.css">
+<style>
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 40px 22px 80px; }
+  header.hero { padding: 60px 0 10px; text-align: left; }
+  h1.name { font-size: clamp(28px, 6vw, 52px); margin: 0; color: var(--nx-text); }
+  h1 .hl { color: var(--nx-magenta); text-shadow: var(--nx-glow-magenta); }
+  .subtitle { color: var(--nx-cyan); font-size: 15px; margin: 6px 0 24px; min-height: 22px; }
+</style>
+</head>
+<body class="nx-scanlines nx-vignette">
 
-		<meta http-equiv="content-type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.145.0">
+<div class="nx-boot"><pre></pre></div>
 
+<main class="wrap">
 
+  <!-- hero -->
+  <header class="hero">
+    <div class="nx-prompt">
+      <span class="nx-seg nx-c3"> kenichi </span><span class="nx-seg nx-c4"> shibata.co.uk </span><span class="nx-seg nx-c2"> ~ </span><span class="nx-seg nx-c5"> ⚡ zsh </span>
+    </div>
+    <h1 class="name"><span class="nx-glitch" data-text="KENICHI SHIBATA">KENICHI SHIBATA</span></h1>
+    <p class="subtitle"><span data-type="$ whoami → kubernetes platform engineer · cloud native author · speaker"> </span></p>
 
+    <div class="nx-terminal">
+      <div class="nx-titlebar">
+        <span class="nx-dot r"></span><span class="nx-dot y"></span><span class="nx-dot g"></span>
+        <span class="nx-title">kenichi@shibata.co.uk — neofetch</span>
+      </div>
+      <div class="nx-body nx-neofetch">
+        <pre class="logo">
+ █████╗ ███╗   ███╗
+██╔══██╗████╗ ████║   platform: enterprise kubernetes
+███████║██╔████╔██║   stack:   aws · gcp · terraform · argocd
+██╔══██║██║╚██╔╝██║   wrote:   "cloud native monitoring" (o'reilly)
+██║  ██║██║ ╚═╝ ██║   spoke:    aws summit · qcon · cloud expo europe
+╚═╝  ╚═╝╚═╝     ╚═╝   status:   <span style="color:#05ffa1">● shipping</span>        </pre>
+        <dl>
+          <dt>os</dt><dd>Arch Linux + Proxmox homelab</dd>
+          <dt>shell</dt><dd>zsh + powerlevel10k</dd>
+          <dt>editor</dt><dd>neovim (btw)</dd>
+          <dt>uptime</dt><dd data-uptime="94608000">—</dd>
+          <dt>k8s</dt><dd>multi-cluster · gitops · karpenter</dd>
+          <dt>observability</dt><dd>prometheus · otel · grafana</dd>
+          <dt>coffee</dt><dd>critical dependency</dd>
+          <dt>site</dt><dd><a href="https://kenichi.shibata.co.uk">kenichi.shibata.co.uk</a></dd>
+        </dl>
+      </div>
+    </div>
 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+    <p style="margin-top:18px">
+      <a href="#platform"><span class="nx-badge hot">kubernetes</span></a>
+      <a href="#writing"><span class="nx-badge info">author ×2</span></a>
+      <a href="#speaking"><span class="nx-badge warn">speaker</span></a>
+      <a href="#contact"><span class="nx-badge ok">open to talk</span></a>
+    </p>
+  </header>
 
+  <!-- platform -->
+  <h2 class="nx-h">$ ls <b>~/expertise</b></h2>
+  <div class="nx-grid">
+    <article class="nx-card">
+      <h3>kubernetes platforms</h3>
+      <p>Enterprise-grade multi-cluster platforms. EKS, GitOps with ArgoCD/Flux,
+      autoscaling with Karpenter, progressive delivery, zero-trust networking.</p>
+      <span class="nx-badge ok">eks</span><span class="nx-badge ok">argocd</span><span class="nx-badge info">karpenter</span><span class="nx-badge hot">istio</span>
+    </article>
+    <article class="nx-card">
+      <h3>infrastructure as code</h3>
+      <p>Terraform at scale, Terragrunt, Crossplane, policy-as-code with OPA.
+      Everything versioned, everything reviewed, nothing clickops.</p>
+      <span class="nx-badge info">terraform</span><span class="nx-badge info">crossplane</span><span class="nx-badge warn">opa</span>
+    </article>
+    <article class="nx-card">
+      <h3>cloud native observability</h3>
+      <p>Author of O'Reilly books on monitoring &amp; observability. OpenTelemetry,
+      Prometheus, SLO engineering, eBPF-based insights.</p>
+      <span class="nx-badge hot">otel</span><span class="nx-badge ok">prometheus</span><span class="nx-badge info">ebpf</span>
+    </article>
+    <article class="nx-card">
+      <h3>devsecops</h3>
+      <p>A decade of shifting security left without slowing teams down.
+      Supply-chain hardening, SBOMs, admission control, secrets management.</p>
+      <span class="nx-badge err">supply-chain</span><span class="nx-badge warn">sbom</span><span class="nx-badge ok">vault</span>
+    </article>
+  </div>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- writing -->
+  <h2 class="nx-h">$ cat <b>writing.md</b></h2>
+  <div class="nx-terminal">
+    <div class="nx-titlebar"><span class="nx-dot r"></span><span class="nx-dot y"></span><span class="nx-dot g"></span><span class="nx-title">books &amp; publications</span></div>
+    <div class="nx-body">
+      <table class="nx-table">
+        <thead><tr><th>title</th><th>publisher</th><th>status</th></tr></thead>
+        <tbody>
+          <tr><td>Cloud Native Monitoring</td><td>O'Reilly Media</td><td><span class="nx-badge ok">published</span></td></tr>
+          <tr><td>Cloud Native Observability</td><td>O'Reilly Media</td><td><span class="nx-badge ok">published</span></td></tr>
+          <tr><td>technical articles &amp; contributions</td><td>various</td><td><span class="nx-badge info">ongoing</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <!-- speaking -->
+  <h2 class="nx-h">$ history <b>| grep speak</b></h2>
+  <div class="nx-terminal">
+    <div class="nx-titlebar"><span class="nx-dot r"></span><span class="nx-dot y"></span><span class="nx-dot g"></span><span class="nx-title">conference log</span></div>
+    <div class="nx-body">
+      <p class="nx-cmd"><span class="p">❯</span> <span class="k">grep</span> -i "stage" talks.log</p>
+      <p class="nx-out">AWS Summit London — keynote stage<br>QCon — platform engineering track<br>Cloud Expo Europe — main theatre</p>
+      <p class="nx-cmd"><span class="p">❯</span> <span class="k">echo</span> <span class="s">"available for conferences & meetups"</span> <span class="nx-typing"></span></p>
+    </div>
+  </div>
 
+  <!-- contact -->
+  <h2 class="nx-h">$ ssh <b>contact@shibata.co.uk</b></h2>
+  <div class="nx-terminal">
+    <div class="nx-titlebar"><span class="nx-dot r"></span><span class="nx-dot y"></span><span class="nx-dot g"></span><span class="nx-title">connect — /dev/tcp</span></div>
+    <div class="nx-body">
+      <p class="nx-cmd"><span class="p">❯</span> <span class="k">curl</span> socials/-L</p>
+      <p>
+        <a href="https://github.com/kenichi-shibata"><span class="nx-badge info">github</span></a>
+        <a href="https://www.linkedin.com/in/kenichishibata31"><span class="nx-badge info">linkedin</span></a>
+        <a href="mailto:kenichi@shibata.co.uk"><span class="nx-badge ok">email</span></a>
+        <a href="/cv"><span class="nx-badge hot">cv.pdf</span></a>
+      </p>
+      <p class="nx-out">connection established. response time: &lt;24h.</p>
+    </div>
+  </div>
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</main>
 
-
-<link rel="stylesheet" href="https://kenichi.shibata.co.uk/css/nix.css">
-
-
-
-
-
-<link href="https://fonts.googleapis.com/css?family=Inconsolata%7COpen+Sans%7CConcert+One" rel="stylesheet">
-
-
-
-
-
-
-
-	</head>
-	<body>
-		<header>
-<nav class="navbar navbar-default navbar-fixed-top navbar-inverse font-header">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-      <a class="navbar-brand" id="green-terminal" href='https://kenichi.shibata.co.uk/'>
-        kenichi@shibata.co.uk ~ $
-      </a>
-		</div>
-
-		
-		<div class="collapse navbar-collapse" id="navbar-collapse-1">
-			<ul class="nav navbar-nav navbar-right">
-				<li>
-					<a href='https://kenichi.shibata.co.uk/'>/home/kenichi</a>
-        </li>
-        
-				
-				
-				<li class="dropdown">
-                    
-            		<a href="https://kenichi.shibata.co.uk/cv">~/cv</a>
-            		
-        		</li>
-        		
-				
-				<li class="dropdown">
-                    
-            		<a href="https://kenichi.shibata.co.uk/posts">~/posts</a>
-            		
-        		</li>
-        		
-
-			</ul>
-		</div>
-	</div>
-</nav>
-</header>
-
-		<div class="flex-wrapper">
-			<div class="container wrapper">
-				
-				<div class="row">
-					<div class="col-sm-3 col-centered">
-						<img alt="profile-picture" class="img-responsive img-circle user-picture center-block" src="https://avatars0.githubusercontent.com/u/13744098?s=460&amp;u=21c703da9a2c23b2f6c15f81f82ae1f818ed26dc&amp;v=4">
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-xs-12 user-profile text-center">
-						<h1 id="user-name">Kenichi Shibata</h1>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12 user-social text-center">
-					
-
-
-
-
-
-
-
-
-
-<a href="https://github.com/kenichi-shibata" rel="me" title="GitHub"><i class="fab fa-github fa-3x" aria-hidden="true"></i></a>
-
-
-
-
-<a href="https://linkedin.com/in/kenichishibata31" rel="me" title="LinkedIn"><i class="fab fa-linkedin fa-3x" aria-hidden="true"></i></a>
-
-
-
-
-
-<a href="mailto:kenichi@shibata.co.uk" title="Email"><i class="fas fa-envelope fa-3x" aria-hidden="true"></i></a>
-
-
-
-
-
-
-<a href="https://github.com/kenichi-shibata/kenichi-shibata/raw/master/Kenichi_Shibata_VisualCV_Resume.pdf" title="Curriculum Vitae"><i class="fas fa-file-alt fa-3x" aria-hidden="true"></i></a>
-
-
-
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-4 col-md-offset-4 user-description text-center">
-						<p>An innovative DevSecOps leader with over a decade of experience architecting and optimizing cloud infrastructure and security solutions. I excel at driving integration of cutting-edge practices into software development lifecycles to enhance security, reduce costs, and boost efficiency. My expertise has been recognized through speaking engagements at major events like AWS Summit, QCon, and Cloud Expo Europe. As the author of &#34;Cloud Native Monitoring&#34; and &#34;Cloud Native Observability&#34; (O&#39;Reilly Media), and a regular contributor to technical publications, I&#39;m passionate about sharing knowledge. I&#39;m seeking an opportunity to leverage my extensive cloud security, DevOps, and authorship background to drive success for a forward-thinking organization.</p>
-					</div>
-				</div>
-				
-			</div>
-			<footer class="footer text-center">
-<p>Copyright &copy; 2025 Kenichi Shibata -
-<span class="credit">
-	Powered by
-	<a target="_blank" href="https://gohugo.io">Hugo</a>
-	and
-	<a target="_blank" href="https://github.com/LordMathis/hugo-theme-nix/">Nix</a> theme.
-</span>
-</p>
+<footer class="nx-statusline">
+  <span>[0] ~/shibata.co.uk</span>
+  <span class="seg-r">↑ 9460d · <span data-clock>—</span> · UTF-8 · zsh</span>
 </footer>
 
-		</div>
-	</body>
+<script src="nexus-ui.js" defer></script>
+</body>
 </html>

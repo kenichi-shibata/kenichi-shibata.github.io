@@ -1,0 +1,246 @@
+/*
+ * ███╗   ██╗███████╗███╗   ██╗     ██╗   ██╗██╗
+ * ████╗  ██║██╔════╝████╗  ██║     ██║   ██║██║
+ * ██╔██╗ ██║█████╗  ██╔██╗ ██║hells ██║   ██║██║
+ * ██║╚██╗██║██╔══╝  ██║╚██╗██║    ██║   ██║██║
+ * ██║ ╚████║███████╗██║ ╚████║    ╚██████╔╝██║
+ * ╚═╝  ╚═══╝╚══════╝╚═╝  ╚═══╝     ╚═════╝ ╚═╝
+ * NEXUS-UI v1.0.0 — vaporwave/cyberpunk terminal component library
+ * Powerlevel10k + PowerType inspired. Zero dependencies.
+ *
+ * Components:
+ *  .nx-terminal      — chrome window w/ traffic lights + titlebar
+ *  .nx-prompt        — p10k two-segment powerline prompt
+ *  .nx-seg           — powerline segment (modifier classes: nx-c1..c5)
+ *  .nx-typing        — typewriter cursor block
+ *  .nx-neofetch      — neofetch-style info panel (two-col)
+ *  .nx-cmd           — command output line
+ *  .nx-card          — glowing grid card (hover: scanline sweep)
+ *  .nx-badge         — kubectl-style pill badge (.ok .warn .info .hot)
+ *  .nx-bar           — CPU/mem gauge bar
+ *  .nx-grid          — responsive card container
+ *  .nx-scanlines     — CRT overlay (apply to body wrapper)
+ *  .nx-glitch        — glitch text effect on hover
+ *  .nx-kbd           — keycap
+ *  .nx-table         — terminal table with neon rules
+ */
+
+:root {
+  --nx-bg: #0a0118;
+  --nx-bg2: #120826;
+  --nx-panel: rgba(18, 8, 38, 0.85);
+  --nx-magenta: #ff2d95;
+  --nx-cyan: #00f0ff;
+  --nx-purple: #b967ff;
+  --nx-yellow: #ffe600;
+  --nx-green: #05ffa1;
+  --nx-red: #ff3864;
+  --nx-orange: #ff9e64;
+  --nx-text: #d8d3ef;
+  --nx-dim: #6f6693;
+  --nx-border: rgba(255, 45, 149, 0.35);
+  --nx-glow-magenta: 0 0 8px rgba(255, 45, 149, .8), 0 0 24px rgba(255, 45, 149, .4);
+  --nx-glow-cyan: 0 0 8px rgba(0, 240, 255, .8), 0 0 24px rgba(0, 240, 255, .35);
+  --nx-font: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 20% -10%, rgba(185, 103, 255, 0.14), transparent 55%),
+    radial-gradient(ellipse at 85% 110%, rgba(255, 45, 149, 0.12), transparent 50%),
+    var(--nx-bg);
+  color: var(--nx-text);
+  font-family: var(--nx-font);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+::selection { background: var(--nx-magenta); color: #000; }
+a { color: var(--nx-cyan); text-decoration: none; }
+a:hover { text-shadow: var(--nx-glow-cyan); }
+code { font-family: var(--nx-font); }
+
+/* ── scrollbar ───────────────────────────────── */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--nx-bg); }
+::-webkit-scrollbar-thumb { background: linear-gradient(var(--nx-magenta), var(--nx-purple)); border-radius: 5px; }
+
+/* ── CRT scanlines overlay ───────────────────── */
+.nx-scanlines { position: relative; }
+.nx-scanlines::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 9998;
+  background: repeating-linear-gradient(0deg, transparent 0 2px, rgba(0,0,0,0.12) 2px 4px);
+}
+.nx-vignette::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 9997;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.45) 100%);
+}
+
+/* ── terminal chrome window ──────────────────── */
+.nx-terminal {
+  background: var(--nx-panel);
+  border: 1px solid var(--nx-border);
+  border-radius: 10px;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 30px rgba(255, 45, 149, 0.15), inset 0 0 40px rgba(0,0,0,0.4);
+}
+.nx-titlebar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 14px;
+  background: linear-gradient(90deg, rgba(255,45,149,.15), rgba(0,240,255,.08));
+  border-bottom: 1px solid var(--nx-border);
+  font-size: 13px; color: var(--nx-dim);
+}
+.nx-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+.nx-dot.r { background: #ff5f56; } .nx-dot.y { background: #ffbd2e; } .nx-dot.g { background: #27c93f; }
+.nx-titlebar .nx-title { margin-left: 8px; letter-spacing: 1px; }
+.nx-body { padding: 18px 22px; }
+
+/* ── p10k powerline prompt ───────────────────── */
+.nx-prompt {
+  font-weight: 700; white-space: nowrap; overflow-x: auto;
+  display: inline-flex; align-items: stretch;
+  text-shadow: 0 0 6px currentColor;
+}
+.nx-seg { padding: 2px 14px 2px 18px; clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%); margin-right: -6px; }
+.nx-seg:first-child { padding-left: 12px; }
+.nx-c1 { background: #2a1b3d; color: var(--nx-cyan); }
+.nx-c2 { background: #44318d; color: #fff; }
+.nx-c3 { background: var(--nx-magenta); color: #0a0118; }
+.nx-c4 { background: var(--nx-purple); color: #0a0118; }
+.nx-c5 { background: var(--nx-cyan); color: #0a0118; }
+
+/* ── typewriter cursor ───────────────────────── */
+.nx-typing::after {
+  content: "▊"; color: var(--nx-green); animation: nx-blink 1s steps(1) infinite; margin-left: 2px;
+}
+@keyframes nx-blink { 50% { opacity: 0; } }
+
+/* ── command line ────────────────────────────── */
+.nx-cmd { margin: 4px 0; word-break: break-word; }
+.nx-cmd .p { color: var(--nx-magenta); font-weight: 700; }
+.nx-cmd .o { color: var(--nx-text); }
+.nx-cmd .k { color: var(--nx-purple); }
+.nx-cmd .s { color: var(--nx-green); }
+.nx-cmd .n { color: var(--nx-yellow); }
+.nx-out { color: var(--nx-dim); margin: 2px 0 10px 0; white-space: pre-wrap; }
+
+/* ── neofetch panel ──────────────────────────── */
+.nx-neofetch { display: flex; gap: 28px; flex-wrap: wrap; align-items: flex-start; }
+.nx-neofetch pre.logo {
+  margin: 0; color: var(--nx-magenta); line-height: 1.25;
+  text-shadow: var(--nx-glow-magenta); font-size: 12px;
+}
+.nx-neofetch dl { margin: 0; min-width: 260px; }
+.nx-neofetch dt { color: var(--nx-cyan); font-weight: 700; float: left; clear: left; width: 130px; text-shadow: var(--nx-glow-cyan); }
+.nx-neofetch dd { margin: 0 0 4px 140px; }
+
+/* ── cards ───────────────────────────────────── */
+.nx-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+.nx-card {
+  position: relative; padding: 20px;
+  background: var(--nx-panel);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 8px; overflow: hidden;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+.nx-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--nx-magenta);
+  box-shadow: var(--nx-glow-magenta);
+}
+.nx-card::before {
+  content: ""; position: absolute; top: 0; left: -80%; width: 50%; height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255,255,255,0.06), transparent);
+  transform: skewX(-20deg); transition: left .6s;
+}
+.nx-card:hover::before { left: 130%; }
+.nx-card h3 { margin: 0 0 10px; color: var(--nx-cyan); font-size: 16px; text-transform: lowercase; }
+.nx-card h3::before { content: "~/ "; color: var(--nx-dim); }
+.nx-card p, .nx-card li { font-size: 13.5px; color: var(--nx-text); }
+
+/* ── badges (kubectl style) ──────────────────── */
+.nx-badge {
+  display: inline-block; padding: 2px 10px; margin: 2px 4px 2px 0;
+  font-size: 11.5px; font-weight: 700; letter-spacing: .5px;
+  border-radius: 3px; border: 1px solid; text-transform: uppercase;
+}
+.nx-badge.ok   { color: var(--nx-green);  border-color: var(--nx-green);  background: rgba(5,255,161,.08); }
+.nx-badge.info { color: var(--nx-cyan);   border-color: var(--nx-cyan);   background: rgba(0,240,255,.08); }
+.nx-badge.warn { color: var(--nx-yellow); border-color: var(--nx-yellow); background: rgba(255,230,0,.08); }
+.nx-badge.hot  { color: var(--nx-magenta);border-color: var(--nx-magenta);background: rgba(255,45,149,.1); }
+.nx-badge.err  { color: var(--nx-red);    border-color: var(--nx-red);    background: rgba(255,56,100,.08); }
+
+/* ── gauge bars ──────────────────────────────── */
+.nx-bar { height: 8px; background: rgba(255,255,255,.06); border-radius: 4px; overflow: hidden; margin: 4px 0 10px; }
+.nx-bar > i {
+  display: block; height: 100%; border-radius: 4px;
+  background: linear-gradient(90deg, var(--nx-purple), var(--nx-magenta));
+  box-shadow: var(--nx-glow-magenta);
+  animation: nx-load 1.4s ease-out;
+}
+@keyframes nx-load { from { width: 0 !important; } }
+
+/* ── glitch heading ──────────────────────────── */
+.nx-glitch { position: relative; display: inline-block; }
+.nx-glitch::before, .nx-glitch::after {
+  content: attr(data-text); position: absolute; inset: 0; opacity: .8;
+}
+.nx-glitch::before { color: var(--nx-cyan); animation: nx-glitch-a 2.4s infinite step-end; }
+.nx-glitch::after { color: var(--nx-magenta); animation: nx-glitch-b 3.1s infinite step-end; }
+@keyframes nx-glitch-a { 0%,92%,100%{transform:none;opacity:.8} 93%{transform:translate(-3px,1px)} 96%{transform:translate(2px,-1px)} }
+@keyframes nx-glitch-b { 0%,88%,100%{transform:none;opacity:.8} 89%{transform:translate(3px,-1px)} 94%{transform:translate(-2px,2px)} }
+
+/* ── keycaps ─────────────────────────────────── */
+.nx-kbd {
+  display: inline-block; padding: 1px 8px; font-size: 12px;
+  border: 1px solid var(--nx-border); border-bottom-width: 3px; border-radius: 5px;
+  background: var(--nx-bg2); color: var(--nx-yellow);
+}
+
+/* ── terminal tables ─────────────────────────── */
+.nx-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.nx-table th {
+  text-align: left; color: var(--nx-magenta); text-transform: uppercase;
+  font-size: 11.5px; letter-spacing: 1px;
+  border-bottom: 2px solid var(--nx-border); padding: 8px 12px;
+}
+.nx-table td { padding: 8px 12px; border-bottom: 1px solid rgba(111,102,147,.25); }
+.nx-table tr:hover td { background: rgba(255,45,149,.06); }
+
+/* ── section headers as shell comments ───────── */
+.nx-h {
+  color: var(--nx-dim); font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+  margin: 42px 0 16px;
+}
+.nx-h::before { content: "# "; color: var(--nx-green); }
+.nx-h b { color: var(--nx-cyan); }
+
+/* ── footer statusline (tmux style) ──────────── */
+.nx-statusline {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 3px 14px; font-size: 12px; font-weight: 700;
+  background: linear-gradient(90deg, #2a1b3d, var(--nx-magenta));
+  color: #fff; text-shadow: 0 0 4px rgba(0,0,0,.6);
+}
+.nx-statusline .seg-r { color: var(--nx-cyan); }
+
+/* ── boot sequence ───────────────────────────── */
+.nx-boot {
+  position: fixed; inset: 0; z-index: 10000; background: var(--nx-bg);
+  color: var(--nx-green); font-size: 13px; padding: 40px;
+  transition: opacity .5s; text-shadow: 0 0 6px var(--nx-green);
+}
+.nx-boot.done { opacity: 0; pointer-events: none; }
+
+@media (max-width: 640px) {
+  .nx-body { padding: 14px; }
+  .nx-statusline { font-size: 10px; }
+}
