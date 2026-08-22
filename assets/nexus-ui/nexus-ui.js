@@ -69,7 +69,73 @@
     }, 1000);
   }
 
-  /* ── konami → glitch storm ───────────────────── */
+  /* ── interactive REPL: <div class="nx-repl"><div class="nx-repl-out"></div><div class="nx-prompt-line">...<input></div></div> ── */
+function initRepl(repl) {
+  const out = repl.querySelector(".nx-repl-out");
+  const input = repl.querySelector("input");
+  const routes = JSON.parse(repl.getAttribute("data-routes") || "{}");
+  const banner = repl.getAttribute("data-banner") || 'type "help" for available commands';
+
+  function print(html) {
+    const div = document.createElement("div");
+    div.className = "nx-cmd";
+    div.innerHTML = html;
+    out.appendChild(div);
+    out.scrollTop = out.scrollHeight;
+  }
+  print('<span class="o">' + banner + "</span>");
+
+  const help = Object.keys(routes).map(
+    (c) => '<span class="k">' + c.padEnd(10) + "</span>" + routes[c].desc
+  ).join("\n");
+
+  const commands = {
+    help: { run: () => print('<span class="out" style="white-space:pre-wrap;color:var(--nx-dim)">' + help + "</span>") },
+    clear: { run: () => { out.innerHTML = ""; } },
+    whoami: { run: () => print('<span class="s">kenichi shibata — kubernetes platform engineer</span>') },
+    ls: { run: () => print('<span class="n">' + Object.keys(routes).join("  ") + "  projects</span>") },
+    date: { run: () => print('<span class="o">' + new Date().toString() + "</span>") },
+  };
+  Object.keys(routes).forEach((cmd) => {
+    commands[cmd] = {
+      run: () => {
+        print('<span class="p">❯</span> <span class="k">' + cmd + "</span>");
+        if (routes[cmd].url) window.open(routes[cmd].url, "_blank", "noopener");
+        print('<span class="s">→ opening ' + cmd + "…</span>");
+      },
+    };
+  });
+
+  const history = [];
+  let hIdx = -1;
+
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      const raw = input.value.trim();
+      input.value = "";
+      if (!raw) return;
+      history.push(raw);
+      hIdx = history.length;
+      print('<span class="p">kenichi@shibata.co.uk</span> <span class="k">~ ❯</span> ' + raw.replace(/</g, "&lt;"));
+      const [cmd, ...args] = raw.split(/\s+/);
+      const c = commands[cmd.toLowerCase()];
+      if (cmd === "echo") print('<span class="o">' + args.join(" ").replace(/</g, "&lt;") + "</span>");
+      else if (c) c.run(args);
+      else print('<span style="color:var(--nx-red)">command not found: ' + cmd.replace(/</g, "&lt;") + '</span> <span class="o">— try "help"</span>');
+    } else if (e.key === "ArrowUp") {
+      if (hIdx > 0) input.value = history[--hIdx];
+      e.preventDefault();
+    } else if (e.key === "ArrowDown") {
+      input.value = hIdx < history.length - 1 ? history[++hIdx] : (hIdx = history.length, "");
+      e.preventDefault();
+    }
+  });
+  repl.addEventListener("click", () => input.focus());
+}
+
+document.querySelectorAll(".nx-repl").forEach(initRepl);
+
+/* ── konami → glitch storm ───────────────────── */
   const seq = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
   let pos = 0;
   document.addEventListener("keydown", (e) => {

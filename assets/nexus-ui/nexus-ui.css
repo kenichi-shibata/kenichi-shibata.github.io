@@ -232,7 +232,23 @@ code { font-family: var(--nx-font); }
 }
 .nx-statusline .seg-r { color: var(--nx-cyan); }
 
-/* ── boot sequence ───────────────────────────── */
+/* ── interactive REPL ────────────────────────── */
+.nx-repl { cursor: text; }
+.nx-repl-out {
+  max-height: 220px; overflow-y: auto; margin-bottom: 10px;
+  scrollbar-width: thin;
+}
+.nx-repl input {
+  width: calc(100% - 260px); background: transparent; border: none; outline: none;
+  color: var(--nx-green); font: inherit; caret-color: var(--nx-magenta);
+  text-shadow: 0 0 6px rgba(5,255,161,.5);
+}
+.nx-prompt-line { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.nx-prompt-line .host { color: var(--nx-green); font-weight: 700; }
+.nx-prompt-line .path { color: var(--nx-cyan); font-weight: 700; }
+.nx-prompt-line .cursor-char { color: var(--nx-magenta); }
+
+/* ── konami → glitch storm ───────────────────── */
 .nx-boot {
   position: fixed; inset: 0; z-index: 10000; background: var(--nx-bg);
   color: var(--nx-green); font-size: 13px; padding: 40px;

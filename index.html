@@ -121,16 +121,27 @@
   <!-- contact -->
   <h2 class="nx-h">$ ssh <b>contact@shibata.co.uk</b></h2>
   <div class="nx-terminal">
-    <div class="nx-titlebar"><span class="nx-dot r"></span><span class="nx-dot y"></span><span class="nx-dot g"></span><span class="nx-title">connect — /dev/tcp</span></div>
+    <div class="nx-titlebar"><span class="nx-dot r"></span><span class="nx-dot y"></span><span class="nx-dot g"></span><span class="nx-title">kenichi@shibata.co.uk — interactive shell</span></div>
     <div class="nx-body">
-      <p class="nx-cmd"><span class="p">❯</span> <span class="k">curl</span> socials/-L</p>
-      <p>
-        <a href="https://github.com/kenichi-shibata"><span class="nx-badge info">github</span></a>
-        <a href="https://www.linkedin.com/in/kenichishibata31"><span class="nx-badge info">linkedin</span></a>
-        <a href="mailto:kenichi@shibata.co.uk"><span class="nx-badge ok">email</span></a>
-        <a href="/cv"><span class="nx-badge hot">cv.pdf</span></a>
-      </p>
-      <p class="nx-out">connection established. response time: &lt;24h.</p>
+      <div class="nx-repl"
+           data-banner="interactive shell — type <b>help</b> and hit enter. try: linkedin, gmail, chat"
+           data-routes='{
+             "linkedin": {"desc": "open linkedin profile", "url": "https://www.linkedin.com/in/kenichishibata31"},
+             "gmail":    {"desc": "compose email to kenichi@shibata.co.uk", "url": "mailto:kenichi@shibata.co.uk"},
+             "email":    {"desc": "alias for gmail", "url": "mailto:kenichi@shibata.co.uk"},
+             "github":   {"desc": "open github profile", "url": "https://github.com/kenichi-shibata"},
+             "cv":       {"desc": "download CV (pdf)", "url": "https://github.com/kenichi-shibata/kenichi-shibata/raw/master/Kenichi_Shibata_VisualCV_Resume.pdf"},
+             "chat":     {"desc": "chat with my AI twin on discord", "url": "https://discord.com/users/794870678025011200"},
+             "discord":  {"desc": "alias for chat", "url": "https://discord.com/users/794870678025011200"}
+           }'>
+        <div class="nx-repl-out"></div>
+        <div class="nx-prompt-line">
+          <span class="host">kenichi@shibata.co.uk</span>
+          <span class="path">~ ❯</span>
+          <input type="text" autocomplete="off" spellcheck="false" aria-label="terminal command input" autofocus>
+          <span class="cursor-char">▊</span>
+        </div>
+      </div>
     </div>
   </div>
 
