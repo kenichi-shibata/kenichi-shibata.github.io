@@ -134,6 +134,31 @@ body { padding-bottom: 110px; }
     </div>
   </div>
 
+  <!-- blog -->
+  <h2 class="nx-h">$ tail -f <b>~/blog/medium.log</b></h2>
+  <div class="nx-terminal">
+    <div class="nx-titlebar"><span class="nx-dot r"></span><span class="nx-dot y"></span><span class="nx-dot g"></span><span class="nx-title">medium — latest posts</span></div>
+    <div class="nx-body">
+      <p class="nx-cmd"><span class="p">❯</span> <span class="k">jq</span> -r '.posts[] | .date + "  " + .title' medium.json | head -10</p>
+      <table class="nx-table">
+        <thead><tr><th>date</th><th>post</th><th>series</th></tr></thead>
+        <tbody>
+          <tr><td>2025-08-29</td><td><a href="https://kenichishibata.medium.com/git-101-4c683f7145e2" target="_blank" rel="noopener">git 101</a></td><td><span class="nx-badge info">git</span></td></tr>
+          <tr><td>2025-08-29</td><td><a href="https://medium.com/beyond-devsecops/devsecops-risk-boundaries-13c7fd4b0b54" target="_blank" rel="noopener">devsecops risk boundaries</a></td><td><span class="nx-badge hot">devsecops</span></td></tr>
+          <tr><td>2025-08-02</td><td><a href="https://medium.com/beyond-devsecops/building-a-modern-devsecops-pipeline-part-2-vulnerability-and-misconfiguration-management-aa579b951c29" target="_blank" rel="noopener">building a modern devsecops pipeline — pt 2: vuln &amp; misconfig management</a></td><td><span class="nx-badge hot">devsecops</span></td></tr>
+          <tr><td>2025-06-02</td><td><a href="https://medium.com/beyond-devsecops/building-a-modern-devsecops-pipeline-part-1-building-foundations-348ac81af630" target="_blank" rel="noopener">building a modern devsecops pipeline — pt 1: foundations</a></td><td><span class="nx-badge hot">devsecops</span></td></tr>
+          <tr><td>2025-03-25</td><td><a href="https://medium.com/beyond-devsecops/exploiting-the-ingress-nginx-admission-controller-a-deep-dive-into-cve-2023-5043-404ca62fbee0" target="_blank" rel="noopener">exploiting the ingress-nginx admission controller (CVE-2023-5043)</a></td><td><span class="nx-badge err">security</span></td></tr>
+          <tr><td>2025-03-24</td><td><a href="https://medium.com/beyond-devsecops/remote-code-execution-in-apache-tomcat-via-java-deserialization-cve-2025-24813-part-2-98dd576caa59" target="_blank" rel="noopener">rce in apache tomcat via java deserialization (CVE-2025-24813) — pt 2</a></td><td><span class="nx-badge err">security</span></td></tr>
+          <tr><td>2025-03-21</td><td><a href="https://medium.com/beyond-devsecops/exploiting-apache-tomcat-cve-2025-24813-with-jsp-uploads-in-docker-5079203a4375" target="_blank" rel="noopener">exploiting apache tomcat CVE-2025-24813 with JSP uploads in docker</a></td><td><span class="nx-badge err">security</span></td></tr>
+          <tr><td>2025-03-05</td><td><a href="https://kenichishibata.medium.com/docker-things-that-i-forget-about-until-i-need-them-again-for-troubleshooting-e559b2b5ed3b" target="_blank" rel="noopener">docker things i forget about until i need them again for troubleshooting</a></td><td><span class="nx-badge info">docker</span></td></tr>
+          <tr><td>2025-03-03</td><td><a href="https://kenichishibata.medium.com/git-reflog-the-time-machine-that-will-save-your-career-762a557d465a" target="_blank" rel="noopener">git reflog: the time machine that will save your career</a></td><td><span class="nx-badge info">git</span></td></tr>
+          <tr><td>2025-01-30</td><td><a href="https://kenichishibata.medium.com/on-demand-log-level-changes-in-spring-boot-no-restarts-no-hassle-4f8fd28696bf" target="_blank" rel="noopener">on-demand log level changes in spring boot: no restarts, no hassle</a></td><td><span class="nx-badge ok">java</span></td></tr>
+        </tbody>
+      </table>
+      <p class="nx-out" style="margin-top:10px">…full archive at <a href="https://kenichishibata.medium.com" target="_blank" rel="noopener">kenichishibata.medium.com</a> — or type <span style="color:var(--nx-yellow)">blog</span> in the command bar below</p>
+    </div>
+  </div>
+
   <!-- contact -->
   <h2 class="nx-h">$ ssh <b>contact@shibata.co.uk</b></h2>
   <div class="nx-terminal">
@@ -197,6 +222,7 @@ body { padding-bottom: 110px; }
             '<span style="color:var(--nx-purple)">linkedin</span>  open linkedin · ' +
             '<span style="color:var(--nx-purple)">gmail</span>     email me<br>' +
             '<span style="color:var(--nx-purple)">github</span>    open github · ' +
+            '<span style="color:var(--nx-purple)">blog</span>      open medium blog · ' +
             '<span style="color:var(--nx-purple)">chat</span>      ai twin on discord · ' +
             '<span style="color:var(--nx-purple)">clear</span>     clear this log');
     },
@@ -205,6 +231,8 @@ body { padding-bottom: 110px; }
     gmail()   { print('<span style="color:var(--nx-green)">✉ composing email to kenichi@shibata.co.uk…</span>'); location.href = "mailto:kenichi@shibata.co.uk"; },
     email()   { cmds.gmail(); },
     github()  { print('<span style="color:var(--nx-green)">→ opening github…</span>'); open("https://github.com/kenichi-shibata"); },
+    blog()    { print('<span style="color:var(--nx-green)">→ opening medium blog…</span>'); open("https://kenichishibata.medium.com"); },
+    medium()  { cmds.blog(); },
     chat()    { print('<span style="color:var(--nx-green)">→ opening discord (ai twin)…</span>'); open("https://discord.com/users/794870678025011200"); },
     discord() { cmds.chat(); },
     whoami()  { print("kenichi shibata — kubernetes platform engineer"); },
