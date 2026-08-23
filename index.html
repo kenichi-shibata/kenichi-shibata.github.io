@@ -12,6 +12,63 @@
   h1.name { font-size: clamp(28px, 6vw, 52px); margin: 0; color: var(--nx-text); }
   h1 .hl { color: var(--nx-magenta); text-shadow: var(--nx-glow-magenta); }
   .subtitle { color: var(--nx-cyan); font-size: 15px; margin: 6px 0 24px; min-height: 22px; }
+
+  /* clickable rows / cards */
+  .clickable { cursor: pointer; }
+  .nx-card.clickable:hover h3 { text-shadow: var(--nx-glow-cyan); }
+  .rowlink td a { color: var(--nx-cyan); }
+  .rowlink:hover td { background: rgba(255,45,149,.08); cursor: pointer; }
+
+  /* modal */
+  .modal-back {
+    position: fixed; inset: 0; z-index: 9800;
+    background: rgba(4, 0, 12, .82); backdrop-filter: blur(4px);
+    display: none; align-items: flex-start; justify-content: center;
+    padding: 7vh 18px 18px;
+  }
+  .modal-back.open { display: flex; }
+  .modal {
+    width: 100%; max-width: 720px; max-height: 80vh; overflow-y: auto;
+    background: var(--nx-bg2);
+    border: 1px solid var(--nx-border);
+    border-radius: 10px;
+    box-shadow: 0 0 40px rgba(255,45,149,.35), 0 0 120px rgba(0,240,255,.12);
+    animation: mpop .18s ease-out;
+  }
+  @keyframes mpop { from { transform: translateY(14px) scale(.98); opacity: 0; } }
+  .modal-head {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 16px;
+    background: linear-gradient(90deg, rgba(255,45,149,.18), rgba(0,240,255,.1));
+    border-bottom: 1px solid var(--nx-border);
+    position: sticky; top: 0; backdrop-filter: blur(8px);
+  }
+  .modal-title { margin-left: 8px; color: var(--nx-text); font-size: 14px; letter-spacing: 1px; }
+  .modal-x {
+    margin-left: auto; cursor: pointer; border: 1px solid var(--nx-border);
+    background: transparent; color: var(--nx-magenta);
+    font-family: inherit; font-size: 13px; padding: 2px 10px; border-radius: 4px;
+  }
+  .modal-x:hover { box-shadow: var(--nx-glow-magenta); }
+  .modal-body { padding: 18px 22px; font-size: 14px; }
+  .modal-body h4 { color: var(--nx-cyan); margin: 16px 0 6px; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; }
+  .modal-body h4::before { content: "$ "; color: var(--nx-dim); }
+  .modal-body p, .modal-body li { color: var(--nx-text); line-height: 1.65; }
+  .modal-body ul { padding-left: 20px; margin: 6px 0; }
+  .kv { display: grid; grid-template-columns: 140px 1fr; row-gap: 5px; margin: 8px 0; }
+  .kv dt { color: var(--nx-yellow); }
+  .kv dd { margin: 0; }
+  .mfoot { margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .mbtn {
+    display: inline-block; padding: 6px 14px; border-radius: 3px; cursor: pointer;
+    font-size: 12.5px; font-weight: 700; letter-spacing: .5px;
+    border: 1px solid var(--nx-green); color: var(--nx-green);
+    background: rgba(5,255,161,.07); text-transform: uppercase;
+  }
+  .mbtn:hover { background: rgba(5,255,161,.18); box-shadow: 0 0 12px rgba(5,255,161,.5); }
+  .mbtn.alt { border-color: var(--nx-cyan); color: var(--nx-cyan); background: rgba(0,240,255,.06); }
+  .mbtn.alt:hover { background: rgba(0,240,255,.15); box-shadow: 0 0 12px rgba(0,240,255,.45); }
+
 /* pinned p10k command bar */
 #nx-cmdbar {
   position: fixed; left: 0; right: 0; bottom: 28px; z-index: 9500;
@@ -79,27 +136,27 @@ body { padding-bottom: 110px; }
   </header>
 
   <!-- platform -->
-  <h2 class="nx-h">$ ls <b>~/expertise</b></h2>
+  <h2 class="nx-h">$ ls <b>~/expertise</b> <span style="color:var(--nx-dim)">(click a card for details)</span></h2>
   <div class="nx-grid">
-    <article class="nx-card">
+    <article class="nx-card clickable" data-modal="k8s">
       <h3>kubernetes platforms</h3>
       <p>Enterprise-grade multi-cluster platforms. EKS, GitOps with ArgoCD/Flux,
       autoscaling with Karpenter, progressive delivery, zero-trust networking.</p>
       <span class="nx-badge ok">eks</span><span class="nx-badge ok">argocd</span><span class="nx-badge info">karpenter</span><span class="nx-badge hot">istio</span>
     </article>
-    <article class="nx-card">
+    <article class="nx-card clickable" data-modal="iac">
       <h3>infrastructure as code</h3>
       <p>Terraform at scale, Terragrunt, Crossplane, policy-as-code with OPA.
       Everything versioned, everything reviewed, nothing clickops.</p>
       <span class="nx-badge info">terraform</span><span class="nx-badge info">crossplane</span><span class="nx-badge warn">opa</span>
     </article>
-    <article class="nx-card">
+    <article class="nx-card clickable" data-modal="obs">
       <h3>cloud native observability</h3>
       <p>Author of O'Reilly books on monitoring &amp; observability. OpenTelemetry,
       Prometheus, SLO engineering, eBPF-based insights.</p>
       <span class="nx-badge hot">otel</span><span class="nx-badge ok">prometheus</span><span class="nx-badge info">ebpf</span>
     </article>
-    <article class="nx-card">
+    <article class="nx-card clickable" data-modal="sec">
       <h3>devsecops</h3>
       <p>A decade of shifting security left without slowing teams down.
       Supply-chain hardening, SBOMs, admission control, secrets management.</p>
@@ -110,27 +167,33 @@ body { padding-bottom: 110px; }
   <!-- writing -->
   <h2 class="nx-h">$ cat <b>writing.md</b></h2>
   <div class="nx-terminal">
-    <div class="nx-titlebar"><span class="nx-dot r"></span><span class="nx-dot y"></span><span class="nx-dot g"></span><span class="nx-title">books &amp; publications</span></div>
+    <div class="nx-titlebar"><span class="nx-dot r"></span><span class="nx-dot y"></span><span class="nx-dot g"></span><span class="nx-title">books &amp; publications — click a row</span></div>
     <div class="nx-body">
       <table class="nx-table">
         <thead><tr><th>title</th><th>publisher</th><th>status</th></tr></thead>
         <tbody>
-          <tr><td>Cloud Native Monitoring</td><td>O'Reilly Media</td><td><span class="nx-badge ok">published</span></td></tr>
-          <tr><td>Cloud Native Observability</td><td>O'Reilly Media</td><td><span class="nx-badge ok">published</span></td></tr>
-          <tr><td>technical articles &amp; contributions</td><td>various</td><td><span class="nx-badge info">ongoing</span></td></tr>
+          <tr class="rowlink clickable" data-modal="book-mon"><td>Cloud Native Monitoring</td><td>O'Reilly Media</td><td><span class="nx-badge ok">published</span></td></tr>
+          <tr class="rowlink clickable" data-modal="book-obs"><td>Cloud Native Observability</td><td>O'Reilly Media</td><td><span class="nx-badge ok">published</span></td></tr>
+          <tr class="rowlink clickable" data-modal="articles"><td>technical articles &amp; contributions</td><td>various</td><td><span class="nx-badge info">ongoing</span></td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
   <!-- speaking -->
-  <h2 class="nx-h">$ history <b>| grep speak</b></h2>
+  <h2 class="nx-h">$ history <b>| grep speak</b> <span style="color:var(--nx-dim)">(click for talk details)</span></h2>
   <div class="nx-terminal">
-    <div class="nx-titlebar"><span class="nx-dot r"></span><span class="nx-dot y"></span><span class="nx-dot g"></span><span class="nx-title">conference log</span></div>
+    <div class="nx-titlebar"><span class="nx-dot r"></span><span class="nx-dot y"></span><span class="nx-dot g"></span><span class="nx-title">conference log — click an entry</span></div>
     <div class="nx-body">
       <p class="nx-cmd"><span class="p">❯</span> <span class="k">grep</span> -i "stage" talks.log</p>
-      <p class="nx-out">AWS Summit London — keynote stage<br>QCon — platform engineering track<br>Cloud Expo Europe — main theatre</p>
-      <p class="nx-cmd"><span class="p">❯</span> <span class="k">echo</span> <span class="s">"available for conferences & meetups"</span> <span class="nx-typing"></span></p>
+      <table class="nx-table">
+        <tbody>
+          <tr class="rowlink clickable" data-modal="talk-aws"><td>AWS Summit London</td><td>keynote track</td></tr>
+          <tr class="rowlink clickable" data-modal="talk-qcon"><td>QCon</td><td>platform engineering track</td></tr>
+          <tr class="rowlink clickable" data-modal="talk-cee"><td>Cloud Expo Europe</td><td>main theatre</td></tr>
+        </tbody>
+      </table>
+      <p class="nx-cmd" style="margin-top:12px"><span class="p">❯</span> <span class="k">echo</span> <span class="s">"available for conferences & meetups"</span> <span class="nx-typing"></span></p>
     </div>
   </div>
 
@@ -159,23 +222,53 @@ body { padding-bottom: 110px; }
     </div>
   </div>
 
+  <!-- experience timeline -->
+  <h2 class="nx-h">$ cat <b>/var/log/career.log</b></h2>
+  <div class="nx-terminal">
+    <div class="nx-titlebar"><span class="nx-dot r"></span><span class="nx-dot y"></span><span class="nx-dot g"></span><span class="nx-title">career log — click a role</span></div>
+    <div class="nx-body">
+      <table class="nx-table">
+        <thead><tr><th>period</th><th>role</th><th>focus</th></tr></thead>
+        <tbody>
+          <tr class="rowlink clickable" data-modal="exp-cloudarch"><td>recent</td><td>Lead Cloud Native Architect / Principal Engineer</td><td>kubernetes · platform strategy</td></tr>
+          <tr class="rowlink clickable" data-modal="exp-apparch"><td>earlier</td><td>Application Platform Architect</td><td>developer platform · devsecops</td></tr>
+          <tr class="rowlink clickable" data-modal="exp-sre"><td>earlier still</td><td>Senior SRE / DevOps Lead</td><td>aws · terraform · ci/cd at scale</td></tr>
+          <tr class="rowlink clickable" data-modal="exp-eng"><td>origins</td><td>Software Engineer</td><td>java · spring · distributed systems</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <!-- contact -->
   <h2 class="nx-h">$ ssh <b>contact@shibata.co.uk</b></h2>
   <div class="nx-terminal">
     <div class="nx-titlebar"><span class="nx-dot r"></span><span class="nx-dot y"></span><span class="nx-dot g"></span><span class="nx-title">connect — /dev/tcp</span></div>
     <div class="nx-body">
-      <p class="nx-cmd"><span class="p">❯</span> <span class="k">curl</span> socials/-L</p>
+      <p class="nx-cmd"><span class="p">❯</span> <span class="k">curl</span> socials/-L <span style="color:var(--nx-dim)">(or click)</span></p>
       <p>
-        <a href="https://github.com/kenichi-shibata"><span class="nx-badge info">github</span></a>
-        <a href="https://www.linkedin.com/in/kenichishibata31"><span class="nx-badge info">linkedin</span></a>
+        <a href="https://github.com/kenichi-shibata" target="_blank" rel="noopener"><span class="nx-badge info">github</span></a>
+        <a href="https://www.linkedin.com/in/kenichishibata31" target="_blank" rel="noopener"><span class="nx-badge info">linkedin</span></a>
         <a href="mailto:kenichi@shibata.co.uk"><span class="nx-badge ok">email</span></a>
-        <a href="/cv"><span class="nx-badge hot">cv.pdf</span></a>
+        <span class="nx-badge hot clickable" onclick="window.__cmdcv && window.__cmdcv()">cv.pdf ▼</span>
+        <span class="nx-badge warn clickable" onclick="window.__openModal('talk-booking')">🎤 book me to speak</span>
       </p>
       <p class="nx-out">connection established. response time: &lt;24h.</p>
     </div>
   </div>
 
 </main>
+
+<!-- modal -->
+<div class="modal-back" id="modalback" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="modal-head">
+      <span class="nx-dot r"></span><span class="nx-dot y"></span><span class="nx-dot g"></span>
+      <span class="modal-title" id="modaltitle"></span>
+      <button class="modal-x" id="modalx" aria-label="close">✕ esc</button>
+    </div>
+    <div class="modal-body" id="modalbody"></div>
+  </div>
+</div>
 
 <footer class="nx-statusline">
   <span>[0] ~/shibata.co.uk</span>
@@ -189,12 +282,128 @@ body { padding-bottom: 110px; }
     <span class="nx-seg nx-c3"> kenichi </span><span class="nx-seg nx-c4"> shibata.co.uk </span><span class="nx-seg nx-c2"> ~ </span><span class="nx-seg nx-c5"> ⚡ </span>
     <input id="nx-cmdin" type="text" autocomplete="off" spellcheck="false"
            aria-label="command line — try cv, linkedin, gmail, chat, help"
-           placeholder="type 'help' — try: cv · linkedin · gmail · chat">
+           placeholder="type 'help' — try: cv · linkedin · gmail · chat · open k8s">
     <span style="color:var(--nx-magenta);font-weight:700">▊</span>
   </div>
 </div>
 
 <script src="assets/nexus-ui/nexus-ui.js" defer></script>
+<script>
+/* ── modal system + content ──────────────────── */
+const MODALS = {
+  "k8s": { title: "~/expertise/kubernetes-platforms", body: `
+    <dl class="kv"><dt>experience</dt><dd>production kubernetes since the early days — multi-region, multi-cluster</dd></dl>
+    <h4>what i build</h4>
+    <ul><li>EKS platforms serving hundreds of engineers across business units</li>
+    <li>GitOps with ArgoCD &amp; Flux — app-of-apps, drift detection, automated rollbacks</li>
+    <li>Karpenter &amp; cluster-autoscaler node lifecycle; spot + savings-plan mixes (60%+ compute savings typical)</li>
+    <li>Istio service mesh, mTLS everywhere, progressive delivery with canary analysis</li></ul>
+    <h4>hard rules i ship by</h4>
+    <ul><li>if it isn't in git, it doesn't exist</li>
+    <li>every cluster bootstraps itself from a repo — no snowflakes</li></ul>` },
+  "iac": { title: "~/expertise/infrastructure-as-code", body: `
+    <dl class="kv"><dt>philosophy</dt><dd>zero clickops — every resource reviewed, versioned, planned</dd></dl>
+    <h4>toolchain</h4>
+    <ul><li>Terraform at scale: multi-account landing zones, reusable modules, terragrunt DRY stacks</li>
+    <li>Crossplane for app-team self-service composables on top of kubernetes</li>
+    <li>OPA/conftest policy gates in CI; admission control in-cluster</li></ul>
+    <h4>typical wins</h4>
+    <ul><li>environment spin-up from weeks to under an hour</li>
+    <li>drift detection + automated remediation pipelines</li></ul>` },
+  "obs": { title: "~/expertise/cloud-native-observability", body: `
+    <dl class="kv"><dt>author</dt><dd>"Cloud Native Monitoring" &amp; "Cloud Native Observability" (O'Reilly Media)</dd></dl>
+    <h4>practice</h4>
+    <ul><li>OpenTelemetry instrumentation standards across polyglot fleets</li>
+    <li>Prometheus federation, Thanos long-term storage, Grafana as the single pane</li>
+    <li>SLO engineering: error budgets that actually gate releases</li>
+    <li>eBPF-based zero-instrumentation insights for legacy workloads</li></ul>
+    <h4>outcome</h4>
+    <ul><li>MTTR drops when alerts map to symptoms, not causes — that's the core thesis of the second book</li></ul>` },
+  "sec": { title: "~/expertise/devsecops", body: `
+    <dl class="kv"><dt>stance</dt><dd>shift security left without slowing delivery — or it gets bypassed</dd></dl>
+    <h4>domains</h4>
+    <ul><li>Supply-chain hardening: SBOMs (syft), signature verification (cosign/sigstore), provenance attestations</li>
+    <li>CVE research mindset — I exploit things in labs so I know how they break (see the Tomcat &amp; ingress-nginx write-ups)</li>
+    <li>Vault + external-secrets; no plaintext creds anywhere, ever</li>
+    <li>Admission control: OPA gatekeeper policies blocking unsigned images &amp; privileged pods</li></ul>` },
+  "book-mon": { title: "book — Cloud Native Monitoring", body: `
+    <dl class="kv"><dt>publisher</dt><dd>O'Reilly Media</dd><dt>status</dt><dd><span class="nx-badge ok">published</span></dd></dl>
+    <h4>what's inside</h4>
+    <ul><li>Monitoring fundamentals re-framed for dynamic, containerised estates</li>
+    <li>Metrics vs logs vs traces — when each earns its keep and when it's noise</li>
+    <li>Prometheus architecture patterns for scale, plus alert design that respects on-call sanity</li></ul>` },
+  "book-obs": { title: "book — Cloud Native Observability", body: `
+    <dl class="kv"><dt>publisher</dt><dd>O'Reilly Media</dd><dt>status</dt><dd><span class="nx-badge ok">published</span></dd></dl>
+    <h4>what's inside</h4>
+    <ul><li>The step beyond monitoring: understanding systems through their telemetry</li>
+    <li>OpenTelemetry end-to-end — traces, baggage, sampling strategies that survive production</li>
+    <li>SLOs, error budgets and turning observability into product decisions</li></ul>` },
+  "articles": { title: "technical articles & contributions", body: `
+    <dl class="kv"><dt>status</dt><dd><span class="nx-badge info">ongoing</span></dd></dl>
+    <h4>venues</h4>
+    <ul><li>Medium (@kenichishibata + Beyond DevSecOps publication) — 10 recent posts linked above</li>
+    <li>TheChief.io syndication</li>
+    <li>CoSeCast podcast guest — kubernetes in production</li></ul>` },
+  "talk-aws": { title: "talk — AWS Summit London", body: `
+    <dl class="kv"><dt>stage</dt><dd>keynote track</dd><dt>theme</dt><dd>enterprise kubernetes adoption at scale</dd></dl>
+    <p>Platform patterns for running many teams on shared EKS foundations without strangling autonomy.</p>` },
+  "talk-qcon": { title: "talk — QCon", body: `
+    <dl class="kv"><dt>track</dt><dd>platform engineering</dd><dt>theme</dt><dd>internal developer platforms done pragmatically</dd></dl>
+    <p>Why most IDPs fail (built for the platform team, not the users) and what to do instead.</p>` },
+  "talk-cee": { title: "talk — Cloud Expo Europe", body: `
+    <dl class="kv"><dt>stage</dt><dd>main theatre</dd><dt>theme</dt><dd>cloud native transformation war stories</dd></dl>
+    <p>Real migration lessons — what broke, what it cost, and the sequencing that actually worked.</p>` },
+  "talk-booking": { title: "🎤 booking — conferences & meetups", body: `
+    <p>Available for keynote, breakout and panel formats on:</p>
+    <ul><li>Enterprise kubernetes platforms</li><li>DevSecOps pipelines &amp; supply-chain security</li><li>Observability strategy (SLOs, OTel, eBPF)</li></ul>
+    <div class="mfoot"><span class="mbtn alt" onclick="location.href='mailto:kenichi@shibata.co.uk?subject=Speaking%20invitation'">✉ email an invite</span>
+    <span class="mbtn alt" onclick="window.open('https://www.linkedin.com/in/kenichishibata31','_blank','noopener')">in linkedin dm</span></div>` },
+  "exp-cloudarch": { title: "role — Lead Cloud Native Architect / Principal Engineer", body: `
+    <dl class="kv"><dt>focus</dt><dd>kubernetes platforms · platform strategy</dd></dl>
+    <h4>highlights</h4>
+    <ul><li>Owned platform architecture across multi-account AWS estates</li>
+    <li>Authored the O'Reilly monitoring &amp; observability books while shipping</li>
+    <li>Keynote &amp; conference representation: AWS Summit, QCon, Cloud Expo Europe</li></ul>` },
+  "exp-apparch": { title: "role — Application Platform Architect", body: `
+    <dl class="kv"><dt>focus</dt><dd>developer platforms · devsecops</dd></dl>
+    <h4>highlights</h4>
+    <ul><li>Built internal developer platforms that made the paved road faster than the dirt path</li>
+    <li>Embedded security scanning into CI without doubling build times</li></ul>` },
+  "exp-sre": { title: "role — Senior SRE / DevOps Lead", body: `
+    <dl class="kv"><dt>focus</dt><dd>aws · terraform · ci/cd at scale</dd></dl>
+    <h4>highlights</h4>
+    <ul><li>Terraform-managed multi-account infrastructure with full audit trails</li>
+    <li>On-call culture reform: actionable alerts only, error budgets enforced</li></ul>` },
+  "exp-eng": { title: "role — Software Engineer (origins)", body: `
+    <dl class="kv"><dt>focus</dt><dd>java · spring · distributed systems</dd></dl>
+    <h4>why it matters</h4>
+    <ul><li>I read application code, not just yaml — platform decisions land better when you've carried the pager for the apps too</li></ul>` },
+};
+
+function openModal(key) {
+  const m = MODALS[key];
+  if (!m) return;
+  document.getElementById("modaltitle").textContent = m.title;
+  document.getElementById("modalbody").innerHTML = m.body;
+  document.getElementById("modalback").classList.add("open");
+}
+function closeModal() { document.getElementById("modalback").classList.remove("open"); }
+window.__openModal = openModal;
+
+document.querySelectorAll("[data-modal]").forEach(function (el) {
+  el.addEventListener("click", function (e) {
+    if (e.target.closest("a")) return; /* don't swallow real links inside rows */
+    openModal(el.getAttribute("data-modal"));
+  });
+});
+document.getElementById("modalx").addEventListener("click", closeModal);
+document.getElementById("modalback").addEventListener("click", function (e) {
+  if (e.target === this) closeModal();
+});
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") closeModal();
+});
+</script>
 <script>
 (function () {
   const log = document.getElementById("nx-cmdlog");
@@ -211,10 +420,11 @@ body { padding-bottom: 110px; }
   }
 
   function open(url) { window.open(url, "_blank", "noopener"); }
-  function download() {
+  window.__cmdcv = function () {
+    print('<span style="color:var(--nx-green)">▼ downloading Kenichi_Shibata_CV.pdf…</span>');
     const a = document.createElement("a");
     a.href = CV; a.download = ""; document.body.appendChild(a); a.click(); a.remove();
-  }
+  };
 
   const cmds = {
     help() {
@@ -223,10 +433,13 @@ body { padding-bottom: 110px; }
             '<span style="color:var(--nx-purple)">gmail</span>     email me<br>' +
             '<span style="color:var(--nx-purple)">github</span>    open github · ' +
             '<span style="color:var(--nx-purple)">blog</span>      open medium blog · ' +
-            '<span style="color:var(--nx-purple)">chat</span>      ai twin on discord · ' +
-            '<span style="color:var(--nx-purple)">clear</span>     clear this log');
+            '<span style="color:var(--nx-purple)">chat</span>      ai twin on discord<br>' +
+            '<span style="color:var(--nx-purple)">open &lt;card&gt;</span>  open a detail modal — try ' +
+            '<span style="color:var(--nx-yellow)">open k8s</span>, <span style="color:var(--nx-yellow)">open obs</span>, <span style="color:var(--nx-yellow)">open book-mon</span><br>' +
+            '<span style="color:var(--nx-purple)">ls</span>       list openable cards · ' +
+            '<span style="color:var(--nx-purple)">whoami</span> · <span style="color:var(--nx-purple)">clear</span>');
     },
-    cv()      { print('<span style="color:var(--nx-green)">▼ downloading Kenichi_Shibata_CV.pdf…</span>'); download(); },
+    cv()      { window.__cmdcv(); },
     linkedin(){ print('<span style="color:var(--nx-green)">→ opening linkedin…</span>'); open("https://www.linkedin.com/in/kenichishibata31"); },
     gmail()   { print('<span style="color:var(--nx-green)">✉ composing email to kenichi@shibata.co.uk…</span>'); location.href = "mailto:kenichi@shibata.co.uk"; },
     email()   { cmds.gmail(); },
@@ -237,7 +450,19 @@ body { padding-bottom: 110px; }
     discord() { cmds.chat(); },
     whoami()  { print("kenichi shibata — kubernetes platform engineer"); },
     clear()   { log.innerHTML = ""; },
+    ls() {
+      print('<span style="color:var(--nx-yellow)">' + Object.keys(window.MODALS || {}).join("  ") + '</span>' +
+            '  <span style="color:var(--nx-dim)">(use: open &lt;name&gt;)</span>');
+    },
+    open(args) {
+      const key = (args && args[0] || "").trim();
+      if (!key) { print('<span style="color:var(--nx-red)">usage: open &lt;card&gt;</span> — run ls'); return; }
+      if (MODALS[key]) { print('<span style="color:var(--nx-green)">▣ opening ' + key + '…</span>'); openModal(key); }
+      else print('<span style="color:var(--nx-red)">no card named ' + key.replace(/</g,"&lt;") + '</span> — run ls');
+    },
   };
+  // expose modals for the shell's ls
+  window.MODALS = MODALS;
 
   const hist = []; let h = -1;
   input.addEventListener("keydown", (e) => {
@@ -247,8 +472,9 @@ body { padding-bottom: 110px; }
       if (!raw) return;
       hist.push(raw); h = hist.length;
       print('<span style="color:var(--nx-magenta);font-weight:700">❯</span> ' + raw.replace(/</g,"&lt;"));
-      const cmd = raw.split(/\s+/)[0].toLowerCase();
-      if (cmds[cmd]) cmds[cmd]();
+      const parts = raw.split(/\s+/), cmd = parts.shift().toLowerCase();
+      if (cmd === "echo") print(parts.join(" ").replace(/</g,"&lt;"));
+      else if (cmds[cmd]) cmds[cmd](parts);
       else print('<span style="color:var(--nx-red)">command not found: ' + cmd.replace(/</g,"&lt;") + '</span> <span style="color:var(--nx-dim)">— type help</span>');
     } else if (e.key === "ArrowUp")   { if (h > 0) input.value = hist[--h]; e.preventDefault(); }
     else if (e.key === "ArrowDown")   { input.value = h < hist.length-1 ? hist[++h] : (h = hist.length, ""); e.preventDefault(); }
