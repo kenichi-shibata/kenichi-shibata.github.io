@@ -3,223 +3,213 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>kenichi@shibata.co.uk — tty1</title>
+<title>kenichi@shibata.co.uk — platform engineer</title>
 <meta name="description" content="Kenichi Shibata — Kubernetes platform engineer, cloud native author, speaker.">
 <link rel="stylesheet" href="assets/nexus-ui/nexus-ui.css">
 <style>
-  html, body { height: 100%; }
-  body { display: flex; flex-direction: column; }
-  #screen {
-    flex: 1; overflow-y: auto; max-width: 1100px; width: 100%;
-    margin: 0 auto; padding: 24px 22px 30px;
-    font-size: 14.5px;
-  }
-  /* everything is terminal output — kill the card look */
-  .nx-terminal { border: none; background: transparent; box-shadow: none; backdrop-filter: none; border-radius: 0; }
-  .nx-titlebar { display: none; }
-  .nx-body { padding: 0; }
-  .nx-card { border: none; background: transparent; box-shadow: none; padding: 0; transform: none !important; }
-  .nx-card::before { display: none; }
-  .nx-card h3 { color: var(--nx-magenta); }
-  .nx-grid { display: block; }
-  .nx-card p, .nx-card li { color: var(--nx-dim); }
-  .out-block { white-space: pre-wrap; color: var(--nx-text); margin: 2px 0 18px; line-height: 1.55; }
-  .cmdline { margin: 20px 0 4px; font-size: 15px; }
-  .cmdline .ps1 { color: var(--nx-green); font-weight: 700; text-shadow: 0 0 6px rgba(5,255,161,.5); }
-  .cmdline .path { color: var(--nx-cyan); }
-  .comment { color: var(--nx-dim); }
-
-  a.dl-cv {
-    display: inline-block; margin-top: 10px;
-    padding: 6px 16px;
-    border: 1px solid var(--nx-green); border-radius: 3px;
-    color: var(--nx-green); font-weight: 700; letter-spacing: 1px;
-    background: rgba(5,255,161,.07);
-    cursor: pointer; transition: all .2s;
-  }
-  a.dl-cv:hover { background: rgba(5,255,161,.18); box-shadow: 0 0 12px rgba(5,255,161,.6); text-shadow: 0 0 8px var(--nx-green); }
-
-  /* pinned shell */
-  #shellbar {
-    position: sticky; bottom: 0; z-index: 500;
-    background: rgba(10,1,24,.97);
-    border-top: 1px solid var(--nx-border);
-    padding: 8px 22px;
-    backdrop-filter: blur(6px);
-  }
-  #shellbar input {
-    width: calc(100% - 280px); background: transparent; border: none; outline: none;
-    color: var(--nx-green); font: inherit; caret-color: var(--nx-magenta);
-  }
-  #shelllog { max-height: 200px; overflow-y: auto; padding: 0 22px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 40px 22px 80px; }
+  header.hero { padding: 60px 0 10px; text-align: left; }
+  h1.name { font-size: clamp(28px, 6vw, 52px); margin: 0; color: var(--nx-text); }
+  h1 .hl { color: var(--nx-magenta); text-shadow: var(--nx-glow-magenta); }
+  .subtitle { color: var(--nx-cyan); font-size: 15px; margin: 6px 0 24px; min-height: 22px; }
+/* pinned p10k command bar */
+#nx-cmdbar {
+  position: fixed; left: 0; right: 0; bottom: 26px; z-index: 9000;
+  background: rgba(10, 1, 24, 0.97);
+  border-top: 1px solid var(--nx-border);
+  padding: 8px 22px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 -4px 24px rgba(255,45,149,.15);
+}
+#nx-cmdbar input {
+  flex: 1; min-width: 160px; margin-left: 4px;
+  background: transparent; border: none; outline: none;
+  color: var(--nx-green); font: inherit; caret-color: var(--nx-magenta);
+  text-shadow: 0 0 6px rgba(5,255,161,.5);
+}
+body { padding-bottom: 110px; }
 </style>
 </head>
 <body class="nx-scanlines nx-vignette">
 
 <div class="nx-boot"><pre></pre></div>
 
-<div id="screen">
+<main class="wrap">
 
-<pre style="color:var(--nx-magenta);text-shadow:var(--nx-glow-magenta);font-size:11px;line-height:1.2;margin:0 0 8px">
- ██████╗██╗     ██╗
-██╔════╝██║     ██║      Last login: <span id="lastlogin"></span> on tty1
-██║      ██║     ██║      Kernel:   6.9.0-kenichi-custom x86_64
-██║      ██║     ██║      Shell:    zsh 5.9 + powerlevel10k
-╚█████╗ ██║     ██║      Host:     shibata.co.uk
- ╚════╝ ╚═╝     ╚═╝      Arch:     x86_64 (btw)
-</pre>
+  <!-- hero -->
+  <header class="hero">
+    <div class="nx-prompt">
+      <span class="nx-seg nx-c3"> kenichi </span><span class="nx-seg nx-c4"> shibata.co.uk </span><span class="nx-seg nx-c2"> ~ </span><span class="nx-seg nx-c5"> ⚡ zsh </span>
+    </div>
+    <h1 class="name"><span class="nx-glitch" data-text="KENICHI SHIBATA">KENICHI SHIBATA</span></h1>
+    <p class="subtitle"><span data-type="$ whoami → kubernetes platform engineer · cloud native author · speaker"> </span></p>
 
-<p class="cmdline"><span class="ps1">kenichi@shibata.co.uk</span> <span class="path">~ ❯</span> whoami</p>
-<p class="out-block">Kenichi Shibata — kubernetes platform engineer · cloud native author · speaker
-A decade architecting enterprise-grade platforms on AWS & GCP.
-Author of "Cloud Native Monitoring" and "Cloud Native Observability" (O'Reilly).
-Spoken at AWS Summit London, QCon and Cloud Expo Europe.
-<span class="comment"># if it isn't in git, it doesn't exist.</span></p>
+    <div class="nx-terminal">
+      <div class="nx-titlebar">
+        <span class="nx-dot r"></span><span class="nx-dot y"></span><span class="nx-dot g"></span>
+        <span class="nx-title">kenichi@shibata.co.uk — neofetch</span>
+      </div>
+      <div class="nx-body nx-neofetch">
+        <pre class="logo">
+ █████╗ ███╗   ███╗
+██╔══██╗████╗ ████║   platform: enterprise kubernetes
+███████║██╔████╔██║   stack:   aws · gcp · terraform · argocd
+██╔══██║██║╚██╔╝██║   wrote:   "cloud native monitoring" (o'reilly)
+██║  ██║██║ ╚═╝ ██║   spoke:    aws summit · qcon · cloud expo europe
+╚═╝  ╚═╝╚═╝     ╚═╝   status:   <span style="color:#05ffa1">● shipping</span>        </pre>
+        <dl>
+          <dt>os</dt><dd>Arch Linux + Proxmox homelab</dd>
+          <dt>shell</dt><dd>zsh + powerlevel10k</dd>
+          <dt>editor</dt><dd>neovim (btw)</dd>
+          <dt>uptime</dt><dd data-uptime="94608000">—</dd>
+          <dt>k8s</dt><dd>multi-cluster · gitops · karpenter</dd>
+          <dt>observability</dt><dd>prometheus · otel · grafana</dd>
+          <dt>coffee</dt><dd>critical dependency</dd>
+          <dt>site</dt><dd><a href="https://kenichi.shibata.co.uk">kenichi.shibata.co.uk</a></dd>
+        </dl>
+      </div>
+    </div>
 
-<p class="cmdline"><span class="ps1">kenichi@shibata.co.uk</span> <span class="path">~ ❯</span> neofetch --classic</p>
-<pre class="out-block" style="color:var(--nx-text)">
-<span style="color:var(--nx-cyan)">os</span>        arch linux + proxmox homelab
-<span style="color:var(--nx-cyan)">shell</span>     zsh + powerlevel10k
-<span style="color:var(--nx-cyan)">editor</span>    neovim (btw)
-<span style="color:var(--nx-cyan)"></span><span style="color:var(--nx-cyan)">k8s</span>       multi-cluster · gitops · karpenter · istio
-<span style="color:var(--nx-cyan)">iac</span>       terraform · crossplane · opa
-<span style="color:var(--nx-cyan)">obs</span>       opentelemetry · prometheus · grafana · eBPF
-<span style="color:var(--nx-cyan)">books</span>     cloud native monitoring / observability (o'reilly)
-<span style="color:var(--nx-cyan)">stages</span>    aws summit · qcon · cloud expo europe
-<span style="color:var(--nx-cyan)">status</span>    <span style="color:var(--nx-green)">● shipping</span>
-</pre>
+    <p style="margin-top:18px">
+      <a href="#platform"><span class="nx-badge hot">kubernetes</span></a>
+      <a href="#writing"><span class="nx-badge info">author ×2</span></a>
+      <a href="#speaking"><span class="nx-badge warn">speaker</span></a>
+      <a href="#contact"><span class="nx-badge ok">open to talk</span></a>
+    </p>
+  </header>
 
-<p class="cmdline"><span class="ps1">kenichi@shibata.co.uk</span> <span class="path">~ ❯</span> tree ~/expertise -L 2</p>
-<pre class="out-block">
-expertise/
-├── kubernetes-platforms/
-│   ├── eks · multi-cluster · gitops (argocd, flux)
-│   ├── autoscaling: karpenter · KEDA
-│   └── service-mesh: istio · progressive delivery
-├── infrastructure-as-code/
-│   ├── terraform @ scale · terragrunt · crossplane
-│   └── policy-as-code: OPA · admission control
-├── cloud-native-observability/
-│   ├── openTelemetry · prometheus · grafana
-│   └── eBPF-based insights · SLO engineering
-└── devsecops/
-    ├── supply-chain hardening · SBOM · sigstore
-    └── secrets: vault · external-secrets
+  <!-- platform -->
+  <h2 class="nx-h">$ ls <b>~/expertise</b></h2>
+  <div class="nx-grid">
+    <article class="nx-card">
+      <h3>kubernetes platforms</h3>
+      <p>Enterprise-grade multi-cluster platforms. EKS, GitOps with ArgoCD/Flux,
+      autoscaling with Karpenter, progressive delivery, zero-trust networking.</p>
+      <span class="nx-badge ok">eks</span><span class="nx-badge ok">argocd</span><span class="nx-badge info">karpenter</span><span class="nx-badge hot">istio</span>
+    </article>
+    <article class="nx-card">
+      <h3>infrastructure as code</h3>
+      <p>Terraform at scale, Terragrunt, Crossplane, policy-as-code with OPA.
+      Everything versioned, everything reviewed, nothing clickops.</p>
+      <span class="nx-badge info">terraform</span><span class="nx-badge info">crossplane</span><span class="nx-badge warn">opa</span>
+    </article>
+    <article class="nx-card">
+      <h3>cloud native observability</h3>
+      <p>Author of O'Reilly books on monitoring &amp; observability. OpenTelemetry,
+      Prometheus, SLO engineering, eBPF-based insights.</p>
+      <span class="nx-badge hot">otel</span><span class="nx-badge ok">prometheus</span><span class="nx-badge info">ebpf</span>
+    </article>
+    <article class="nx-card">
+      <h3>devsecops</h3>
+      <p>A decade of shifting security left without slowing teams down.
+      Supply-chain hardening, SBOMs, admission control, secrets management.</p>
+      <span class="nx-badge err">supply-chain</span><span class="nx-badge warn">sbom</span><span class="nx-badge ok">vault</span>
+    </article>
+  </div>
 
-4 directories, 13 files
-</pre>
-
-<p class="cmdline"><span class="ps1">kenichi@shibata.co.uk</span> <span class="path">~ ❯</span> cat publications.csv | column -t</p>
-<pre class="out-block">
-TITLE                        PUBLISHER        STATUS
-cloud-native-monitoring      o'reilly media   <span style="color:var(--nx-green)">[published]</span>
-cloud-native-observability   o'reilly media   <span style="color:var(--nx-green)">[published]</span>
-technical-articles           various          <span style="color:var(--nx-yellow)">[ongoing] </span>
-</pre>
-
-<p class="cmdline"><span class="ps1">kenichi@shibata.co.uk</span> <span class="path">~ ❯</span> history | grep stage</p>
-<pre class="out-block">
-  042  aws-summit-london    keynote track
-  117  qcon                 platform engineering
-  203  cloud-expo-europe    main theatre
-</pre>
-
-<p class="cmdline"><span class="ps1">kenichi@shibata.co.uk</span> <span class="path">~ ❯</span> wget kenichi.shibata.co.uk/cv --user=recruiter</p>
-<p class="out-block">--2026-08-23--  https://kenichi.shibata.co.uk/Kenichi_Shibata_CV.pdf
-Resolving kenichi.shibata.co.uk... connected.
-HTTP request sent... <span style="color:var(--nx-green)">200 OK</span></p>
-<a class="dl-cv" href="Kenichi_Shibata_CV.pdf" download>▼ DOWNLOAD CV.PDF — 64kb</a>
-
-</div><!-- /screen -->
-
-<!-- pinned interactive shell -->
-<div id="shellwrap">
-  <div id="shelllog"></div>
-  <div id="shellbar">
-    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-      <span style="color:var(--nx-green);font-weight:700">kenichi@shibata.co.uk</span>
-      <span style="color:var(--nx-cyan);font-weight:700">~ ❯</span>
-      <input id="shellin" type="text" autocomplete="off" spellcheck="false"
-             aria-label="terminal command input" autofocus
-             placeholder="type 'help' — try: cv, linkedin, gmail, chat, neofetch">
-      <span style="color:var(--nx-magenta)">▊</span>
+  <!-- writing -->
+  <h2 class="nx-h">$ cat <b>writing.md</b></h2>
+  <div class="nx-terminal">
+    <div class="nx-titlebar"><span class="nx-dot r"></span><span class="nx-dot y"></span><span class="nx-dot g"></span><span class="nx-title">books &amp; publications</span></div>
+    <div class="nx-body">
+      <table class="nx-table">
+        <thead><tr><th>title</th><th>publisher</th><th>status</th></tr></thead>
+        <tbody>
+          <tr><td>Cloud Native Monitoring</td><td>O'Reilly Media</td><td><span class="nx-badge ok">published</span></td></tr>
+          <tr><td>Cloud Native Observability</td><td>O'Reilly Media</td><td><span class="nx-badge ok">published</span></td></tr>
+          <tr><td>technical articles &amp; contributions</td><td>various</td><td><span class="nx-badge info">ongoing</span></td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
-</div>
+
+  <!-- speaking -->
+  <h2 class="nx-h">$ history <b>| grep speak</b></h2>
+  <div class="nx-terminal">
+    <div class="nx-titlebar"><span class="nx-dot r"></span><span class="nx-dot y"></span><span class="nx-dot g"></span><span class="nx-title">conference log</span></div>
+    <div class="nx-body">
+      <p class="nx-cmd"><span class="p">❯</span> <span class="k">grep</span> -i "stage" talks.log</p>
+      <p class="nx-out">AWS Summit London — keynote stage<br>QCon — platform engineering track<br>Cloud Expo Europe — main theatre</p>
+      <p class="nx-cmd"><span class="p">❯</span> <span class="k">echo</span> <span class="s">"available for conferences & meetups"</span> <span class="nx-typing"></span></p>
+    </div>
+  </div>
+
+  <!-- contact -->
+  <h2 class="nx-h">$ ssh <b>contact@shibata.co.uk</b></h2>
+  <div class="nx-terminal">
+    <div class="nx-titlebar"><span class="nx-dot r"></span><span class="nx-dot y"></span><span class="nx-dot g"></span><span class="nx-title">connect — /dev/tcp</span></div>
+    <div class="nx-body">
+      <p class="nx-cmd"><span class="p">❯</span> <span class="k">curl</span> socials/-L</p>
+      <p>
+        <a href="https://github.com/kenichi-shibata"><span class="nx-badge info">github</span></a>
+        <a href="https://www.linkedin.com/in/kenichishibata31"><span class="nx-badge info">linkedin</span></a>
+        <a href="mailto:kenichi@shibata.co.uk"><span class="nx-badge ok">email</span></a>
+        <a href="/cv"><span class="nx-badge hot">cv.pdf</span></a>
+      </p>
+      <p class="nx-out">connection established. response time: &lt;24h.</p>
+    </div>
+  </div>
+
+</main>
 
 <footer class="nx-statusline">
-  <span>[tty1] ~/shibata.co.uk</span>
-  <span class="seg-r">↑ <span data-uptime="94608000">—</span> · <span data-clock>—</span> · UTF-8 · zsh</span>
+  <span>[0] ~/shibata.co.uk</span>
+  <span class="seg-r">↑ 9460d · <span data-clock>—</span> · UTF-8 · zsh</span>
 </footer>
+
+<!-- pinned p10k powerline command bar -->
+<div id="nx-cmdbar">
+  <div id="nx-cmdlog"></div>
+  <div class="nx-prompt" style="display:flex;align-items:center">
+    <span class="nx-seg nx-c3"> kenichi </span><span class="nx-seg nx-c4"> shibata.co.uk </span><span class="nx-seg nx-c2"> ~ </span><span class="nx-seg nx-c5"> ⚡ </span>
+    <input id="nx-cmdin" type="text" autocomplete="off" spellcheck="false"
+           aria-label="command line — try cv, linkedin, gmail, chat, help"
+           placeholder="type 'help' — try: cv · linkedin · gmail · chat">
+    <span style="color:var(--nx-magenta);font-weight:700">▊</span>
+  </div>
+</div>
 
 <script src="assets/nexus-ui/nexus-ui.js" defer></script>
 <script>
 (function () {
-  document.getElementById("lastlogin").textContent = new Date().toString().slice(0, 21);
-
-  const out = document.getElementById("shelllog");
-  const input = document.getElementById("shellin");
+  const log = document.getElementById("nx-cmdlog");
+  const input = document.getElementById("nx-cmdin");
+  const CV = "Kenichi_Shibata_CV.pdf";
 
   function print(html) {
-    const div = document.createElement("div");
-    div.className = "out-block";
-    div.style.margin = "4px 0";
-    div.innerHTML = html;
-    out.appendChild(div);
-    out.scrollTop = out.scrollHeight;
-    document.getElementById("screen").scrollTop = document.getElementById("screen").scrollHeight;
+    const d = document.createElement("div");
+    d.className = "nx-cmd";
+    d.style.cssText = "background:rgba(10,1,24,.95);border-top:1px solid var(--nx-border);padding:6px 22px";
+    d.innerHTML = html;
+    log.appendChild(d);
+    while (log.children.length > 6) log.removeChild(log.firstChild);
   }
 
-  const routes = {
-    cv:      { d: "download CV (pdf)", url: "Kenichi_Shibata_CV.pdf", dl: true },
-    github:  { d: "open github profile", url: "https://github.com/kenichi-shibata" },
-    linkedin:{ d: "open linkedin profile", url: "https://www.linkedin.com/in/kenichishibata31" },
-    gmail:   { d: "compose email to kenichi@shibata.co.uk", url: "mailto:kenichi@shibata.co.uk" },
-    email:   { d: "alias for gmail", url: "mailto:kenichi@shibata.co.uk" },
-    chat:    { d: "chat with my AI twin on discord", url: "https://discord.com/users/794870678025011200" },
-    discord: { d: "alias for chat", url: "https://discord.com/users/794870678025011200" },
-  };
-
-  function go(r, name) {
-    print('<span style="color:var(--nx-green)">→ ' + name + ": opening…</span>");
-    if (r.dl) {
-      const a = document.createElement("a");
-      a.href = r.url; a.download = ""; document.body.appendChild(a); a.click(); a.remove();
-    } else {
-      window.open(r.url, "_blank", "noopener");
-    }
+  function open(url) { window.open(url, "_blank", "noopener"); }
+  function download() {
+    const a = document.createElement("a");
+    a.href = CV; a.download = ""; document.body.appendChild(a); a.click(); a.remove();
   }
 
   const cmds = {
     help() {
-      print(
-        '<span style="color:var(--nx-purple)">cv</span>        download CV (pdf)\n' +
-        '<span style="color:var(--nx-purple)">github</span>     open github profile\n' +
-        '<span style="color:var(--nx-purple)">linkedin</span>   open linkedin profile\n' +
-        '<span style="color:var(--nx-purple)">gmail</span>      compose email to kenichi@shibata.co.uk\n' +
-        '<span style="color:var(--nx-purple)">chat</span>       chat with my AI twin on discord\n' +
-        '<span style="color:var(--nx-purple)">whoami</span>     who am i\n' +
-        '<span style="color:var(--nx-purple)">neofetch</span>   scroll to system info\n' +
-        '<span style="color:var(--nx-purple)">top</span>        scroll to top\n' +
-        '<span style="color:var(--nx-purple)">clear</span>      clear this log\n' +
-        '<span style="color:var(--nx-purple)">date</span>       current date/time'
-      );
+      print('<span style="color:var(--nx-purple)">cv</span>       download my CV (pdf) · ' +
+            '<span style="color:var(--nx-purple)">linkedin</span>  open linkedin · ' +
+            '<span style="color:var(--nx-purple)">gmail</span>     email me<br>' +
+            '<span style="color:var(--nx-purple)">github</span>    open github · ' +
+            '<span style="color:var(--nx-purple)">chat</span>      ai twin on discord · ' +
+            '<span style="color:var(--nx-purple)">clear</span>     clear this log');
     },
-    cv()      { go(routes.cv, "cv"); },
-    github()  { go(routes.github, "github"); },
-    linkedin(){ go(routes.linkedin, "linkedin"); },
-    gmail()   { go(routes.gmail, "gmail"); },
-    email()   { go(routes.email, "email"); },
-    chat()    { go(routes.chat, "chat"); },
-    discord() { go(routes.discord, "discord"); },
+    cv()      { print('<span style="color:var(--nx-green)">▼ downloading Kenichi_Shibata_CV.pdf…</span>'); download(); },
+    linkedin(){ print('<span style="color:var(--nx-green)">→ opening linkedin…</span>'); open("https://www.linkedin.com/in/kenichishibata31"); },
+    gmail()   { print('<span style="color:var(--nx-green)">✉ composing email to kenichi@shibata.co.uk…</span>'); location.href = "mailto:kenichi@shibata.co.uk"; },
+    email()   { cmds.gmail(); },
+    github()  { print('<span style="color:var(--nx-green)">→ opening github…</span>'); open("https://github.com/kenichi-shibata"); },
+    chat()    { print('<span style="color:var(--nx-green)">→ opening discord (ai twin)…</span>'); open("https://discord.com/users/794870678025011200"); },
+    discord() { cmds.chat(); },
     whoami()  { print("kenichi shibata — kubernetes platform engineer"); },
-    neofetch(){ location.hash = ""; document.getElementById("screen").scrollTo({top:0}); },
-    top()     { window.scrollTo({top:0, behavior:"smooth"}); },
-    clear()   { out.innerHTML = ""; },
-    date()    { print(new Date().toString()); },
+    clear()   { log.innerHTML = ""; },
   };
-  // aliases
-  cmds["wget"] = cmds.cv;
 
   const hist = []; let h = -1;
   input.addEventListener("keydown", (e) => {
@@ -228,13 +218,12 @@ HTTP request sent... <span style="color:var(--nx-green)">200 OK</span></p>
       input.value = "";
       if (!raw) return;
       hist.push(raw); h = hist.length;
-      print('<span style="color:var(--nx-green);font-weight:700">$</span> ' + raw.replace(/</g,"&lt;"));
-      const parts = raw.split(/\s+/), cmd = parts.shift().toLowerCase();
-      if (cmd === "echo") print(parts.join(" ").replace(/</g,"&lt;"));
-      else if (cmds[cmd]) cmds[cmd](parts);
-      else print('<span style="color:var(--nx-red)">zsh: command not found: ' + cmd.replace(/</g,"&lt;") + '</span> <span style="color:var(--nx-dim)">— type help</span>');
-    } else if (e.key === "ArrowUp") { if (h > 0) input.value = hist[--h]; e.preventDefault(); }
-    else if (e.key === "ArrowDown") { input.value = h < hist.length-1 ? hist[++h] : (h = hist.length, ""); e.preventDefault(); }
+      print('<span style="color:var(--nx-magenta);font-weight:700">❯</span> ' + raw.replace(/</g,"&lt;"));
+      const cmd = raw.split(/\s+/)[0].toLowerCase();
+      if (cmds[cmd]) cmds[cmd]();
+      else print('<span style="color:var(--nx-red)">command not found: ' + cmd.replace(/</g,"&lt;") + '</span> <span style="color:var(--nx-dim)">— type help</span>');
+    } else if (e.key === "ArrowUp")   { if (h > 0) input.value = hist[--h]; e.preventDefault(); }
+    else if (e.key === "ArrowDown")   { input.value = h < hist.length-1 ? hist[++h] : (h = hist.length, ""); e.preventDefault(); }
   });
 })();
 </script>
